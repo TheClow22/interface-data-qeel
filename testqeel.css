@@ -1420,10 +1420,10 @@ h1.qeel_title i {
 }
 
 .group-card .group-name {
-  font-family: var(--font-3);
+  font-family: 'Matrix', var(--font-3);
   text-transform: uppercase;
   font-size: var(--small-size);
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   color: var(--textColorAccent);
   font-weight: 600;
   text-align: center;
@@ -1468,23 +1468,46 @@ h1.qeel_title i {
 
 .qeel-welcome-block {
   display: grid;
-  grid-template-columns: 100px 1fr 280px;
-  gap: 20px;
+  grid-template-columns: 140px 1fr 300px;
+  gap: 25px;
   align-items: center;
   background: var(--neutralDark);
   border-radius: var(--radius);
-  padding: 20px;
-  min-height: 120px;
+  padding: 25px;
+  min-height: 140px;
+  position: relative;
+  box-shadow: 0 0 25px rgba(233, 56, 174, 0.15);
 }
 
-/* Avatar */
+/* Cadre lumineux autour du bloc */
+.qeel-welcome-block::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius);
+  padding: 2px;
+  background: linear-gradient(135deg, var(--co-1), var(--co-3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Avatar rectangulaire */
 .qeel-welcome-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  border-radius: 15px;
   overflow: hidden;
   background: var(--neutral);
   flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .qeel-welcome-avatar img {
@@ -1502,41 +1525,72 @@ h1.qeel_title i {
   text-transform: uppercase;
   font-size: var(--medium-size);
   color: var(--contrast);
-  line-height: 1.4;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+.qeel-welcome-text::before {
+  content: 'Bienvenue à notre nouveau venu :';
+  display: block;
+  font-size: var(--small-size);
+  color: var(--co-1);
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .qeel-welcome-text a {
   font-size: var(--large-size);
   font-weight: 600;
+  background: var(--co-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
 }
 
-/* GIF décoratif */
+/* GIF avec bordure Faerie Soirée */
 .qeel-welcome-gif {
-  height: 120px;
+  height: 130px;
   border-radius: var(--radius);
   background-image: url('https://i.pinimg.com/originals/cf/88/99/cf889965c8db4cace0467ba17cbab3f6.gif');
   background-size: cover;
   background-position: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
+/* Bordure bicolore avec marge */
 .qeel-welcome-gif::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: calc(var(--radius) + 4px);
+  padding: 3px;
+  background: linear-gradient(135deg, var(--co-1), var(--co-3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.9;
+}
+
+/* Overlay léger sur le GIF */
+.qeel-welcome-gif::after {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--co-gradient);
-  opacity: 0.3;
+  opacity: 0.25;
   pointer-events: none;
+  border-radius: var(--radius);
 }
 
 /* ============================================ */
-/* BLOC ACTIVITÉ (Online + 48h) */
+/* BLOC ACTIVITÉ (Online + Stats + 48h) */
 /* ============================================ */
 
 .qeel-activity-row {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 300px 2fr;
   gap: 20px;
 }
 
@@ -1546,21 +1600,22 @@ h1.qeel_title i {
   border-radius: var(--radius);
   overflow: hidden;
   height: 140px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .qeel-block-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 35px;
+  gap: 10px;
+  height: 38px;
   background: var(--co-gradient);
   color: white;
-  font-family: var(--font-3);
+  font-family: 'Retro Gaming', var(--font-3);
   text-transform: uppercase;
   font-size: var(--small-size);
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .qeel-block-title .cp {
@@ -1571,7 +1626,7 @@ h1.qeel_title i {
   padding: 12px;
   font-size: var(--little-size);
   overflow-y: auto;
-  height: calc(100% - 35px);
+  height: calc(100% - 38px);
 }
 
 /* Retirer le premier <br> dans online users */
@@ -1580,37 +1635,42 @@ h1.qeel_title i {
 }
 
 /* ============================================ */
-/* STATS SIMPLIFIÉES */
+/* STATS COMPACTES (milieu de la grille) */
 /* ============================================ */
 
 .qeel-stats-simple {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  background: var(--neutral);
+  gap: 12px;
+  background: var(--neutralDark);
   border-radius: var(--radius);
-  padding: 15px;
-  font-size: var(--normal-size);
-  color: var(--textColor);
+  padding: 20px 15px;
+  font-size: var(--small-size);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .qeel-stats-simple > div {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.qeel-stats-separator {
-  color: var(--co-1);
-  font-size: var(--large-size);
-  font-weight: bold;
-}
-
-#qeel_posts strong,
-#qeel_users strong {
-  color: var(--co-1);
+  display: inline-block;
+  padding: 6px 15px;
+  border-radius: 20px;
+  background: var(--co-gradient);
+  background-size: 200% 200%;
+  animation: gradient 6s ease infinite;
+  color: white;
   font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: var(--little-size);
+  text-align: center;
+  min-width: 180px;
+}
+
+.qeel-stats-simple strong {
+  color: white;
+  font-size: var(--medium-size);
 }
 
 /*** RESET -------------- ***/
