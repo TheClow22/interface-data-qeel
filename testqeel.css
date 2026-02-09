@@ -1343,296 +1343,296 @@ div#tabs li:nth-child(5) {
 }
 
 /*** ------------------------------- ***/
+/*** ------------------------------- ***/
 /*** QUI EST EN LIGNE -------------- ***/
 
+/* Titre bandeau */
 h1.qeel_title {
-    position: relative;
-    height: 55px;
-    padding-top: 11px;
-    background: var(--co-gradient);
-    background-size: 200% 200%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    border-bottom: 1px solid var(--neutralDark);
-    border-radius: var(--radius) var(--radius) 0 0;
-    color: white;
-    animation: gradient 6s ease infinite;
+  position: relative;
+  height: 55px;
+  padding-top: 11px;
+  background: var(--co-gradient);
+  background-size: 200% 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--neutralDark);
+  border-radius: var(--radius) var(--radius) 0 0;
+  color: white;
+  animation: gradient 6s ease infinite;
 }
 
-h1.qeel_title>div {
-    line-height: 17px;
+h1.qeel_title > div {
+  line-height: 17px;
 }
 
 h1.qeel_title i {
-    font-family: var(--font-2);
-    font-style: normal;
-    text-transform: none;
-    font-size: var(--xl-size);
-    line-height: var(--xl-size);
-    font-weight: 600;
+  font-family: var(--font-2);
+  font-style: normal;
+  text-transform: none;
+  font-size: var(--xl-size);
+  line-height: var(--xl-size);
+  font-weight: 600;
 }
 
-.queel {
-    display: grid;
-    grid-template-columns: 1fr 300px 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-    background: var(--neutral);
-    backdrop-filter: blur(5px);
-    border-radius: 0 0 var(--radius) var(--radius);
-    padding: 20px;
+/* Container principal */
+.qeel-container {
+  display: grid;
+  grid-template-columns: 240px 1fr 260px;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: var(--neutral);
+  backdrop-filter: blur(5px);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 20px;
 }
 
-.queel_stats {
-    padding: 10px;
+/* ============================================ */
+/* COLONNE GAUCHE */
+/* ============================================ */
+
+.qeel-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.queel_stats t2 {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    color: var(--co-1);
+/* Online now */
+.qeel-online {
+  background: var(--neutral);
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 100px;
 }
 
-.queel_infos {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.qeel-block-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 30px;
+  background: var(--co-gradient);
+  color: white;
+  font-family: var(--font-3);
+  text-transform: uppercase;
+  font-size: var(--small-size);
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-.queel_infos > * {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 120px;
-    background: var(--neutral);
-    border-radius: 5px;
-    overflow: hidden;
+.qeel-block-title .cp {
+  font-size: var(--normal-size);
 }
 
-.queel_infos > *:not(.queel_groups) {
-	backdrop-filter: blur(10px);
+.qeel-block-content {
+  padding: 10px;
+  font-size: var(--little-size);
+  overflow-y: auto;
+  height: calc(100% - 30px);
 }
 
-.queel_ctnt {
-    padding: 10px;
-    width: 100%;
-    font-size: var(--little-size);
+/* Retirer le premier <br> dans online users */
+#online_users br:first-child {
+  display: none;
 }
 
-.queel_online .desc br:first-child {
-	display: none;
+/* Dernier inscrit */
+.qeel-newbie {
+  background: var(--neutralDark);
+  border-radius: var(--radius);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 160px;
 }
 
-.queel_newbie,
-.queel_groups {
-	flex-direction: column;
+.qeel-newbie-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--neutral);
 }
 
-.queel_new-ctnt {
-	display: flex;
+.qeel-newbie-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.queel_new-ctnt div {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	font-family: var(--font-3);
-	color: var(--contrast);
-	text-transform: uppercase;
-	font-size: var(--medium-size);
+.qeel-newbie-welcome {
+  text-align: center;
+  font-family: var(--font-3);
+  text-transform: uppercase;
+  font-size: var(--medium-size);
+  color: var(--contrast);
+  line-height: 1.3;
 }
 
-#total_users {
-    display: flex;
-    justify-content: center;
-    gap: 3px;
-    align-items: center;
-    font-size: var(--normal-size);
-    color: var(--co-1);
+/* ============================================ */
+/* COLONNE CENTRALE */
+/* ============================================ */
+
+.qeel-center {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
+/* Les 5 groupes - Grille 3+2 */
+.qeel-groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 70px);
+  gap: 15px;
+}
+
+/* Les 2 derniers groupes (ligne du bas) centrés */
+.qeel-groups .group-card:nth-child(4) {
+  grid-column: 1 / 2;
+  grid-column-start: 1;
+  margin-left: 25%;
+}
+
+.qeel-groups .group-card:nth-child(5) {
+  grid-column: 2 / 3;
+  margin-right: 25%;
+}
+
+.group-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--neutralDark);
+  border-radius: var(--radius);
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+}
+
+.group-card .cp {
+  font-size: 28px;
+  transition: transform 0.3s ease;
+}
+
+.group-card .group-name {
+  font-family: var(--font-3);
+  text-transform: uppercase;
+  font-size: var(--small-size);
+  letter-spacing: 1px;
+  color: var(--textColorAccent);
+  font-weight: 600;
+}
+
+/* Couleurs par groupe */
+.group-card.pragmatistes { border-color: #0074F0; }
+.group-card.pragmatistes .cp { color: #0074F0; }
+
+.group-card.intacts { border-color: #EC6700; }
+.group-card.intacts .cp { color: #EC6700; }
+
+.group-card.ambigus { border-color: #8607ED; }
+.group-card.ambigus .cp { color: #8607ED; }
+
+.group-card.irreversibles { border-color: #E01145; }
+.group-card.irreversibles .cp { color: #E01145; }
+
+.group-card.conscients { border-color: #75D959; }
+.group-card.conscients .cp { color: #75D959; }
+
+/* Hover effects */
+.group-card:hover {
+  background: var(--co-gradient);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.group-card:hover .cp {
+  color: white;
+  transform: scale(1.15);
+}
+
+.group-card:hover .group-name {
+  color: white;
+}
+
+/* Encart GIF */
+.qeel-gif {
+  height: 180px;
+  border-radius: var(--radius);
+  background-image: url('https://i.pinimg.com/originals/cf/88/99/cf889965c8db4cace0467ba17cbab3f6.gif');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.qeel-gif::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--co-gradient);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ============================================ */
+/* COLONNE DROITE */
+/* ============================================ */
+
+.qeel-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 48 heures */
+.qeel-48h {
+  background: var(--neutralDark);
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 180px;
+}
+
+/* Stats */
+.qeel-stats {
+  background: var(--neutral);
+  border-radius: var(--radius);
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: var(--little-size);
+}
+
+.qeel-stats > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--textColor);
+}
+
+#qeel_posts strong,
+#total_users strong {
+  color: var(--co-1);
+  font-weight: 600;
+}
+
+/* Cacher les textes qu'on va remplacer en JS */
 #total_users br {
-    display: none;
+  display: none;
 }
 
 #total_users strong:first-of-type {
-	display: none;
-}
-
-#lastuser_avatar {
-	height: 90px;
-}
-
-#lastuser_avatar img {
-	width: 85px;
-	height: 100%;
-	object-fit: cover;
-	object-position: top;
-}
-
-.queel_groups {
-	background: none;
-}
-
-.queel_groups > div {
-	display: grid;
-	grid-template: repeat(2, 1fr) / repeat(2, 1fr);
-	gap: 10px;
-}
-
-.queel_gradient {
-    align-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 20px;
-    background: var(--co-gradient);
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 1px;
-    color: white;
-    font-size: var(--small-size);
-    font-weight: 600;
-}
-
-.queel_gradient.right {
-	width: 30px;
-	height: 100%;
-	writing-mode: vertical-rl;
-	text-orientation: mixed;
-}
-
-.queel_gradient.bottom {
-	width: 100%;
-	height: 30px;
-}
-
-.queel_img {
-    border-left: 1px solid var(--neutralDark);
-    border-right: 1px solid var(--neutralDark);
-    background: var(--qeel-icon);
-    flex-direction: column;
-    gap: 20px;
-    margin: -20px 0;
-    padding: 40px 20px;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    display: flex;
-}
-
-.queel_img > div {
-    border-radius: 20px;
-    backdrop-filter: blur(60px);
-    background: var(--neutral);
-}
-
-[data-color-scheme="dark"] .queel_img > div {
-    background: var(--neutralDark);
-}
-
-.queel_img .desc {
-    height: 94px;
-    line-height: 150%;
-}
-
-/* groupes*/
-.qeel-groups {
-	display: grid;
-	grid-template: repeat(2, 1fr) / repeat(2, 1fr);
-	gap: 15px;
-	margin-bottom: 20px;
-}
-
-a.groups {
-	display: block;
-	background: var(--neutralDark);
-	border-radius: 5px;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: var(--small-size);
-	letter-spacing: 1px;
-	padding: 10px 0;
-	overflow: hidden;
-	opacity: 1;
-	position: relative;
-	transition: 0.5s ease-in;
-	z-index: 1;
-}
-
-a.groups::before {
-	content: '';
-	position: absolute;
-	background: var(--abs);
-	height: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	top: 100%;
-	z-index: -1;
-	transition: top 0.5s ease-in;
-}
-
-a.groups:hover {
-	color: white !important;
-}
-
-a.groups.absinthe {
-	border-bottom: 1px solid var(--abs);
-}
-
-a.groups.absinthe::before {
-	background: var(--abs);
-}
-
-a.groups.absinthe:hover::before {
-	top: 0;
-	height: 100%;
-}
-
-a.groups.ancolie {
-	border-bottom: 1px solid var(--anc);
-}
-
-a.groups.ancolie::before {
-	background: var(--anc);
-}
-
-a.groups.ancolie:hover::before {
-	top: 0;
-	height: 100%;
-}
-
-a.groups.hellebore {
-	border-bottom: 1px solid var(--hel);
-}
-
-a.groups.hellebore::before {
-	background: var(--hel);
-}
-
-a.groups.hellebore:hover::before {
-	top: 0;
-	height: 100%;
-}
-
-a.groups.syriacus {
-	border-bottom: 1px solid var(--syr);
-}
-
-a.groups.syriacus::before {
-	background: var(--syr);
-}
-
-a.groups.syriacus:hover::before {
-	top: 0;
-	height: 100%;
+  display: none;
 }
 
 /* REGISTER */
