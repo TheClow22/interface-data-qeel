@@ -4633,39 +4633,6 @@ h1.qeel_title i {
   color: white;
   font-size: var(--medium-size);
 }
-/* ============================================ */
-/* STATS - Masquer texte FA et afficher custom */
-/* ============================================ */
-
-/* Masquer tout le texte par défaut */
-#qeel_posts,
-#qeel_users {
-  font-size: 0 !important;
-  line-height: 0;
-}
-
-/* Réafficher uniquement les nombres (balise strong) */
-#qeel_posts strong,
-#qeel_users strong {
-  font-size: var(--medium-size) !important;
-  color: white;
-  font-weight: 600;
-}
-
-/* Ajouter le texte custom après le nombre */
-#qeel_posts::after {
-  content: ' messages postés';
-  font-size: var(--little-size);
-  color: white;
-  margin-left: 5px;
-}
-
-#qeel_users::after {
-  content: ' Yunhéens en ville';
-  font-size: var(--little-size);
-  color: white;
-  margin-left: 5px;
-}
 
 /* REGISTER */
 .register h2 {
