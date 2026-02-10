@@ -1408,7 +1408,7 @@ div#tabs li:nth-child(5) {
   object-fit: cover;
 }
 
-/* Texte bienvenue - VERSION SIMPLE QUI FONCTIONNE */
+/* Texte bienvenue - VERSION SIMPLE SANS DÉCORATION */
 .qeel-welcome-text {
   display: flex;
   flex-direction: column;
@@ -1417,34 +1417,6 @@ div#tabs li:nth-child(5) {
   font-family: var(--font-3);
   text-transform: uppercase;
   line-height: 1.3;
-  position: relative;
-  padding: 15px 40px;
-  background: linear-gradient(90deg, transparent, var(--neutralDark) 10%, var(--neutralDark) 90%, transparent);
-  border-radius: var(--radius);
-}
-
-/* Étoile rose à gauche */
-.qeel-welcome-text::before {
-  content: '✦';
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: var(--co-1);
-  opacity: 0.6;
-}
-
-/* Étoile bleue à droite */
-.qeel-welcome-text::after {
-  content: '✦';
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: var(--co-3);
-  opacity: 0.6;
 }
 
 /* Texte "Bienvenue à notre nouveau venu :" */
