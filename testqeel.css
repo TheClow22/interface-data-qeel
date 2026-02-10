@@ -1420,7 +1420,7 @@ div#tabs li:nth-child(5) {
 }
 
 .qeel-welcome-text::before {
-  content: '✦✧ Bienvenue à notre nouveau venu ✧✦';
+  content: '✧ Bienvenue à notre nouveau venu ✧';
   display: block;
   font-size: var(--medium-size);
   color: var(--textColorAccent);
