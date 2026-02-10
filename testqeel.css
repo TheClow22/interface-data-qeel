@@ -1342,7 +1342,6 @@ div#tabs li:nth-child(5) {
 	text-transform: uppercase;
 }
 
-/*** ------------------------------- ***/
 /* ============================================ */
 /* BLOC BIENVENUE (avatar | texte | GIF) */
 /* ============================================ */
@@ -1374,7 +1373,7 @@ div#tabs li:nth-child(5) {
   opacity: 0.5;
 }
 
-/* Avatar rectangulaire VERTICAL */
+/* Avatar rectangulaire VERTICAL avec relief */
 .qeel-welcome-avatar {
   width: 110px;
   height: 150px;
@@ -1382,7 +1381,25 @@ div#tabs li:nth-child(5) {
   overflow: hidden;
   background: var(--neutral);
   flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  position: relative;
+  box-shadow: 
+    0 8px 25px rgba(0,0,0,0.3),
+    0 0 0 3px var(--neutralDark),
+    0 0 15px rgba(224, 17, 69, 0.4);
+}
+
+.qeel-welcome-avatar::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--co-1), var(--co-3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.7;
+  z-index: -1;
 }
 
 .qeel-welcome-avatar img {
@@ -1391,8 +1408,8 @@ div#tabs li:nth-child(5) {
   object-fit: cover;
 }
 
-/* Texte bienvenue - STYLE PRÉCÉDENT RESTAURÉ */
-.qeel-welcome-text {
+/* Texte bienvenue avec décoration subtile */
+#newest_user {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1400,31 +1417,42 @@ div#tabs li:nth-child(5) {
   font-family: var(--font-3);
   text-transform: uppercase;
   line-height: 1.3;
+  position: relative;
+  padding: 15px 45px;
+  background: linear-gradient(90deg, transparent, var(--neutralDark) 10%, var(--neutralDark) 90%, transparent);
+  border-radius: var(--radius);
 }
 
-.qeel-welcome-text::before {
-  content: 'Bienvenue à notre nouveau venu :';
+/* Texte "Bienvenue à notre nouveau venu :" */
+#newest_user::before {
+  content: '✦  Bienvenue à notre nouveau venu :  ✦';
   display: block;
   font-size: var(--medium-size);
   color: var(--textColorAccent);
   font-weight: 400;
   letter-spacing: 0.5px;
+  margin-bottom: 5px;
+  text-align: center;
+  background: linear-gradient(90deg, var(--co-1), var(--co-3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Le pseudo prend la couleur de son groupe automatiquement */
-.qeel-welcome-text a {
+/* Le pseudo prend la couleur de son groupe */
+#newest_user a {
   font-size: var(--large-size);
   font-weight: 600;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 /* GIF avec bordure Faerie Soirée */
 .qeel-welcome-gif {
-  background-image: var(--qeel-gif);
-  background-size: cover;
-  background-position: center;
   height: 150px;
   border-radius: var(--radius);
+  background-image: var(--qeel-gif);  /* ✅ CORRIGÉ : utilise la variable */
+  background-size: cover;
+  background-position: center;
   position: relative;
   overflow: visible;
 }
