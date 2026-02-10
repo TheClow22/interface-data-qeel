@@ -1450,7 +1450,7 @@ div#tabs li:nth-child(5) {
 .qeel-welcome-gif {
   height: 150px;
   border-radius: var(--radius);
-  background-image: var(--qeel-gif);  /* ✅ CORRIGÉ : utilise la variable */
+  background: var(--qeel-gif);  /* ✅ CORRIGÉ : utilise la variable */
   background-size: cover;
   background-position: center;
   position: relative;
