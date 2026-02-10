@@ -4594,7 +4594,7 @@ h1.qeel_title i {
 .qeel-welcome-gif {
   height: 150px;
   border-radius: var(--radius);
-  background-image: url('https://i.pinimg.com/originals/cf/88/99/cf889965c8db4cace0467ba17cbab3f6.gif');
+  background-image: var(--qeel-icon);
   background-size: cover;
   background-position: center;
   position: relative;
