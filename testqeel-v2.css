@@ -10463,8 +10463,8 @@ body#phpbb{margin-top:0!important}
 .fsb-sidebar>*:nth-child(1){animation-delay:.15s}.fsb-sidebar>*:nth-child(2){animation-delay:.2s}.fsb-sidebar>*:nth-child(3){animation-delay:.25s}.fsb-sidebar>*:nth-child(4){animation-delay:.3s}.fsb-sidebar>*:nth-child(5){animation-delay:.35s}.fsb-sidebar>*:nth-child(6){animation-delay:.4s}.fsb-sidebar>*:nth-child(7){animation-delay:.45s}.fsb-sidebar>*:nth-child(8){animation-delay:.5s}.fsb-sidebar>*:nth-child(9){animation-delay:.55s}.fsb-sidebar>*:nth-child(10){animation-delay:.6s}
 @keyframes fsb-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* AVATAR */
-.fsb-avatar{position:relative;width:42px;height:42px;margin-bottom:6px;cursor:pointer;flex-shrink:0}
+/* AVATAR — contenu dans la barre, pas de débordement */
+.fsb-avatar{position:relative;width:42px;height:42px;margin-bottom:6px;cursor:pointer;flex-shrink:0;overflow:visible}
 .fsb-avatar img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid transparent;background:var(--neutralDark);transition:all .3s}
 .fsb-avatar:hover img{border-color:var(--co-1);box-shadow:0 0 12px color-mix(in srgb,var(--co-1),transparent 50%)}
 .fsb-avatar::before{content:"";position:absolute;inset:-3px;border-radius:50%;padding:2px;background:var(--co-gradient);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.7;transition:opacity .3s}
@@ -10481,40 +10481,50 @@ body#phpbb{margin-top:0!important}
 /* SÉPARATEUR */
 .fsb-sep{width:22px;height:1px;background:var(--co-gradient);margin:8px 0;flex-shrink:0;opacity:.6}
 
-/* BOUTONS — forcer les icônes cappuccicons + bootstrap à s'afficher */
-.fsb-btn{position:relative;width:36px;height:36px;border-radius:50%;border:none;background:0 0;color:var(--textColor);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .25s;flex-shrink:0;margin:2px 0}
-.fsb-btn .cp{font-family:'cappuccicons'!important;font-style:normal;font-size:15px}
-.fsb-btn .bi{font-family:'bootstrap-icons'!important;font-style:normal;font-size:15px}
-.fsb-btn:hover{background:var(--neutral);color:var(--co-1);transform:scale(1.08)}
+/* BOUTONS — icônes en co-1 par défaut, co-3 au hover */
+.fsb-btn{position:relative;width:36px;height:36px;border-radius:50%;border:none;background:0 0;color:var(--co-1);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .25s;flex-shrink:0;margin:2px 0}
+.fsb-btn:hover{background:var(--neutral);color:var(--co-3);transform:scale(1.08)}
 .fsb-btn.is-active{background:var(--co-gradient);color:white;border-radius:10px}
 .fsb-spacer{flex:1}
+.fsb-btn-msg{color:var(--co-1)}
 .fsb-btn-msg:hover{background:var(--co-3);color:white}
+
+/* Forcer les icônes cappuccicons et bootstrap-icons dans TOUS les éléments de la sidebar */
+.fsb-sidebar .cp,.fsb-pop .cp{font-family:'cappuccicons'!important;font-style:normal;font-weight:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.fsb-sidebar .bi,.fsb-pop .bi{font-family:'bootstrap-icons'!important;font-style:normal;font-weight:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* Forcer les liens .fsb-btn à hériter la couleur et pas la couleur globale des <a> */
+a.fsb-btn{color:var(--co-1)!important;font-weight:normal!important}
+a.fsb-btn:hover{color:var(--co-3)!important}
 
 /* BADGE NOTIF */
 .fsb-notif-badge{position:absolute;top:2px;right:2px;min-width:14px;height:14px;border-radius:50%;background:var(--co-1);color:white;font-size:8px;font-weight:700;display:none;align-items:center;justify-content:center;padding:0 3px;box-shadow:0 0 6px color-mix(in srgb,var(--co-1),transparent 40%);animation:fsb-pulse 2s infinite;font-family:var(--font)}
 .fsb-notif-badge:not(:empty){display:flex}
 @keyframes fsb-pulse{0%,100%{box-shadow:0 0 6px color-mix(in srgb,var(--co-1),transparent 40%)}50%{box-shadow:0 0 14px color-mix(in srgb,var(--co-1),transparent 10%)}}
 
-/* PANNEAUX (notifications + menu rapide) — design identique à l'ancien menu flottant */
-.fsb-pop{position:fixed;left:62px;width:340px;max-height:450px;background:var(--lighter);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--neutral);border-radius:0 16px 16px 0;box-shadow:4px 4px 20px rgba(0,0,0,.25);overflow:hidden;opacity:0;transform:translateX(-10px) scale(.98);pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);z-index:999;display:flex;flex-direction:column}
+/* PANNEAUX — base commune */
+.fsb-pop{position:fixed;left:62px;width:340px;max-height:450px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--neutral);border-radius:0 16px 16px 0;box-shadow:4px 4px 20px rgba(0,0,0,.25);overflow:hidden;opacity:0;transform:translateX(-10px) scale(.98);pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);z-index:999;display:flex;flex-direction:column}
 .fsb-pop.is-open{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}
 
-/* Header des panneaux — fond neutralDark comme l'ancien menu flottant */
+/* Header des panneaux — fond neutralDark distinct */
 .fsb-pop-header{background:var(--neutralDark);padding:12px 16px 8px;font-family:'Matrix',var(--font-3);font-size:var(--little-size);text-transform:uppercase;letter-spacing:2px;font-weight:bold;border-bottom:1px solid transparent;border-image:var(--co-gradient) 1;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:8px;white-space:nowrap}
 .fsb-pop-header-text{background:var(--co-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .fsb-notif-count{background:var(--co-1);color:white;font-size:9px;padding:2px 8px;border-radius:10px;font-family:var(--font);-webkit-text-fill-color:white}
+
+/* PANNEAU NOTIFICATIONS — fond neutral */
+.fsb-pop-notif{background:var(--neutral)}
 
 /* NOTIFICATIONS DANS PANNEAU */
 .fsb-notif-content{flex:1;overflow-y:auto;padding:6px}
 .fsb-notif-content #notif_list{display:flex!important;flex-direction:column-reverse;width:100%;padding:0;position:static;background:0 0;border-radius:0}
 .fsb-notif-content #notif_list li{padding:10px 12px;border-radius:10px;font-size:var(--little-size);line-height:1.5;transition:background .2s;border-top:none}
-.fsb-notif-content #notif_list li:hover{background:var(--neutral)}
+.fsb-notif-content #notif_list li:hover{background:var(--neutralDark)}
 .fsb-notif-content #notif_list li.unread{background:var(--neutralDark)}
-.fsb-notif-content #notif_list .see_all{background:0 0;border-radius:var(--radius);text-align:center;padding:10px;border-top:1px solid var(--neutral);order:-1;font-size:var(--small-size);text-transform:uppercase;letter-spacing:1px}
+.fsb-notif-content #notif_list .see_all{background:0 0;border-radius:var(--radius);text-align:center;padding:10px;border-top:1px solid var(--neutralDark);order:-1;font-size:var(--small-size);text-transform:uppercase;letter-spacing:1px}
 .fsb-notif-content #notif_list li a.delete:before{content:"\f12a";font-family:"Ionicons";color:#FF4F42}
 
-/* MENU RAPIDE — design fidèle à l'original */
-.fsb-pop-qm{width:230px;max-height:none}
+/* PANNEAU MENU RAPIDE — fond lighter */
+.fsb-pop-qm{width:230px;max-height:none;background:var(--lighter)}
 .fsb-qm-links{display:flex;flex-direction:column;padding:6px 0;overflow-y:auto;overflow-x:hidden}
 .fsb-qm-link{display:flex;align-items:center;gap:12px;padding:9px 16px;text-decoration:none!important;color:var(--textColorAccent)!important;font-size:var(--little-size);font-weight:500;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px;transition:background .2s ease,color .2s ease;position:relative}
 .fsb-qm-link:hover{background:var(--neutral);color:var(--co-3)!important}
@@ -10527,3 +10537,6 @@ body#phpbb{margin-top:0!important}
 .fsb-pop-qm.is-open .fsb-qm-link:nth-child(1){animation-delay:.06s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(2){animation-delay:.1s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(3){animation-delay:.14s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(4){animation-delay:.18s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(5){animation-delay:.22s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(6){animation-delay:.26s}
 @keyframes fsb-slide{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
 .fsb-pop-qm:not(.is-open) .fsb-qm-link{animation:none;opacity:0}
+
+/* Empêcher l'ancien style avatar de déborder dans la sidebar */
+.fsb-sidebar .fsb-avatar img{width:42px!important;height:42px!important;max-width:42px!important;border-radius:50%!important}
