@@ -10538,5 +10538,3 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 @keyframes fsb-slide{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
 .fsb-pop-qm:not(.is-open) .fsb-qm-link{animation:none;opacity:0}
 
-/* Empêcher l'ancien style avatar de déborder dans la sidebar */
-.fsb-sidebar .fsb-avatar img{width:42px!important;height:42px!important;max-width:42px!important;border-radius:50%!important}
