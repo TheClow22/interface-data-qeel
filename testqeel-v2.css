@@ -10449,13 +10449,14 @@ vertical-align: middle;
 }
 
 /* NOUVELLE TOOLBAR */
-/* CACHER TOOLBAR FA + MESSENGER */
+/* CACHER TOOLBAR FA */
 #fa_toolbar{position:fixed!important;left:-9999px!important;opacity:0!important;pointer-events:none!important;height:0!important;overflow:hidden!important}
 body#phpbb{margin-top:0!important}
+/* Messenger : caché visuellement mais cliquable par JS */
 #FAM-button-open{position:fixed!important;left:-9999px!important;opacity:0!important;pointer-events:none!important}
 
 /* BARRE LATÉRALE */
-.fsb-sidebar{position:fixed;left:0;top:0;width:58px;height:100vh;z-index:998;display:flex;flex-direction:column;align-items:center;padding:50px 0 20px;background:color-mix(in srgb,var(--neutralDarker),transparent 15%);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-right:1px solid var(--neutral);box-shadow:4px 0 20px rgba(0,0,0,.2);transition:all .3s;animation:fsb-bar .5s cubic-bezier(.4,0,.2,1) both}
+.fsb-sidebar{position:fixed;left:0;top:0;width:58px;height:100vh;z-index:998;display:flex;flex-direction:column;align-items:center;padding:50px 0 20px;background:var(--neutral);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-right:1px solid var(--neutral);box-shadow:4px 0 20px rgba(0,0,0,.2);transition:all .3s;animation:fsb-bar .5s cubic-bezier(.4,0,.2,1) both}
 .fsb-sidebar::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:var(--co-gradient)}
 @keyframes fsb-bar{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
 .fsb-sidebar>*{animation:fsb-fade .4s ease both}
@@ -10474,12 +10475,16 @@ body#phpbb{margin-top:0!important}
 .fsb-tip::before{content:"";position:absolute;left:-4px;top:50%;transform:translateY(-50%) rotate(45deg);width:8px;height:8px;background:var(--neutralDarker);border-radius:1px}
 .fsb-avatar:hover .fsb-tip,.fsb-btn:hover .fsb-tip{opacity:1;transform:translateY(-50%) scale(1)}
 
-/* BADGE RANG + SÉPARATEUR */
-.fsb-rank{background:var(--co-gradient);color:white;font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:1px 6px;border-radius:6px;margin-bottom:10px;flex-shrink:0}
+/* BADGE RANG — tronqué si trop long */
+.fsb-rank{background:var(--co-gradient);color:white;font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:1px 6px;border-radius:6px;margin-bottom:10px;flex-shrink:0;max-width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+
+/* SÉPARATEUR */
 .fsb-sep{width:22px;height:1px;background:var(--co-gradient);margin:8px 0;flex-shrink:0;opacity:.6}
 
-/* BOUTONS */
-.fsb-btn{position:relative;width:36px;height:36px;border-radius:50%;border:none;background:0 0;color:var(--textColor);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .25s;flex-shrink:0;margin:2px 0;font-family:var(--font-ic)}
+/* BOUTONS — forcer les icônes cappuccicons + bootstrap à s'afficher */
+.fsb-btn{position:relative;width:36px;height:36px;border-radius:50%;border:none;background:0 0;color:var(--textColor);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .25s;flex-shrink:0;margin:2px 0}
+.fsb-btn .cp{font-family:'cappuccicons'!important;font-style:normal;font-size:15px}
+.fsb-btn .bi{font-family:'bootstrap-icons'!important;font-style:normal;font-size:15px}
 .fsb-btn:hover{background:var(--neutral);color:var(--co-1);transform:scale(1.08)}
 .fsb-btn.is-active{background:var(--co-gradient);color:white;border-radius:10px}
 .fsb-spacer{flex:1}
@@ -10490,11 +10495,13 @@ body#phpbb{margin-top:0!important}
 .fsb-notif-badge:not(:empty){display:flex}
 @keyframes fsb-pulse{0%,100%{box-shadow:0 0 6px color-mix(in srgb,var(--co-1),transparent 40%)}50%{box-shadow:0 0 14px color-mix(in srgb,var(--co-1),transparent 10%)}}
 
-/* PANNEAUX */
-.fsb-pop{position:fixed;left:62px;width:340px;max-height:450px;background:color-mix(in srgb,var(--neutralDarker),transparent 5%);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--neutral);border-radius:16px;box-shadow:8px 8px 30px rgba(0,0,0,.35);overflow:hidden;opacity:0;transform:translateX(-10px) scale(.98);pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);z-index:999;display:flex;flex-direction:column}
+/* PANNEAUX (notifications + menu rapide) — design identique à l'ancien menu flottant */
+.fsb-pop{position:fixed;left:62px;width:340px;max-height:450px;background:var(--lighter);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--neutral);border-radius:0 16px 16px 0;box-shadow:4px 4px 20px rgba(0,0,0,.25);overflow:hidden;opacity:0;transform:translateX(-10px) scale(.98);pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);z-index:999;display:flex;flex-direction:column}
 .fsb-pop.is-open{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}
-.fsb-pop-header{padding:14px 16px 10px;font-family:'Matrix',serif;font-size:var(--little-size);text-transform:uppercase;letter-spacing:2px;color:var(--contrast);border-bottom:2px solid transparent;border-image:var(--co-gradient) 1;flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
-.fsb-pop-header span:first-child{background:var(--co-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* Header des panneaux — fond neutralDark comme l'ancien menu flottant */
+.fsb-pop-header{background:var(--neutralDark);padding:12px 16px 8px;font-family:'Matrix',var(--font-3);font-size:var(--little-size);text-transform:uppercase;letter-spacing:2px;font-weight:bold;border-bottom:1px solid transparent;border-image:var(--co-gradient) 1;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:8px;white-space:nowrap}
+.fsb-pop-header-text{background:var(--co-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .fsb-notif-count{background:var(--co-1);color:white;font-size:9px;padding:2px 8px;border-radius:10px;font-family:var(--font);-webkit-text-fill-color:white}
 
 /* NOTIFICATIONS DANS PANNEAU */
@@ -10506,16 +10513,17 @@ body#phpbb{margin-top:0!important}
 .fsb-notif-content #notif_list .see_all{background:0 0;border-radius:var(--radius);text-align:center;padding:10px;border-top:1px solid var(--neutral);order:-1;font-size:var(--small-size);text-transform:uppercase;letter-spacing:1px}
 .fsb-notif-content #notif_list li a.delete:before{content:"\f12a";font-family:"Ionicons";color:#FF4F42}
 
-/* MENU RAPIDE */
-.fsb-pop-qm{width:240px;max-height:none}
-.fsb-qm-links{padding:6px 0}
-.fsb-qm-link{display:flex;align-items:center;gap:12px;padding:9px 16px;text-decoration:none!important;color:var(--textColorAccent)!important;font-size:var(--little-size);font-weight:500;text-transform:uppercase;letter-spacing:.5px;transition:background .2s,color .2s;position:relative}
-.fsb-qm-link:hover{background:var(--neutral);color:var(--co-1)!important}
+/* MENU RAPIDE — design fidèle à l'original */
+.fsb-pop-qm{width:230px;max-height:none}
+.fsb-qm-links{display:flex;flex-direction:column;padding:6px 0;overflow-y:auto;overflow-x:hidden}
+.fsb-qm-link{display:flex;align-items:center;gap:12px;padding:9px 16px;text-decoration:none!important;color:var(--textColorAccent)!important;font-size:var(--little-size);font-weight:500;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px;transition:background .2s ease,color .2s ease;position:relative}
+.fsb-qm-link:hover{background:var(--neutral);color:var(--co-3)!important}
 .fsb-qm-link::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:3px;height:60%;background:var(--co-gradient);border-radius:0 3px 3px 0;transition:transform .25s cubic-bezier(.4,0,.2,1)}
 .fsb-qm-link:hover::before{transform:translateY(-50%) scaleY(1)}
-.fsb-qm-icon{width:26px;height:26px;border-radius:8px;background:var(--neutral);color:var(--co-1);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:all .2s}
-.fsb-qm-link:hover .fsb-qm-icon{background:var(--co-gradient);color:white;transform:scale(1.06)}
+.fsb-qm-icon{width:28px;height:28px;border-radius:8px;background:var(--neutral);color:var(--co-1);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:background .2s ease,color .2s ease,transform .2s ease}
+.fsb-qm-link:hover .fsb-qm-icon{background:var(--co-gradient);color:white;transform:scale(1.08)}
+.fsb-qm-label{font-family:var(--font);letter-spacing:.3px}
 .fsb-pop-qm.is-open .fsb-qm-link{animation:fsb-slide .3s ease both}
-.fsb-pop-qm.is-open .fsb-qm-link:nth-child(1){animation-delay:.04s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(2){animation-delay:.08s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(3){animation-delay:.12s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(4){animation-delay:.16s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(5){animation-delay:.2s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(6){animation-delay:.24s}
-@keyframes fsb-slide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.fsb-pop-qm.is-open .fsb-qm-link:nth-child(1){animation-delay:.06s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(2){animation-delay:.1s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(3){animation-delay:.14s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(4){animation-delay:.18s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(5){animation-delay:.22s}.fsb-pop-qm.is-open .fsb-qm-link:nth-child(6){animation-delay:.26s}
+@keyframes fsb-slide{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
 .fsb-pop-qm:not(.is-open) .fsb-qm-link{animation:none;opacity:0}
