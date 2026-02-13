@@ -10512,7 +10512,7 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 .fsb-notif-count{background:var(--co-1);color:white;font-size:9px;padding:2px 8px;border-radius:10px;font-family:var(--font);-webkit-text-fill-color:white}
 
 /* PANNEAU NOTIFICATIONS — fond neutral */
-.fsb-pop-notif{background:var(--neutral)}
+.fsb-pop-notif{background:var(--neutralDark)}
 
 /* NOTIFICATIONS DANS PANNEAU */
 .fsb-notif-content{flex:1;overflow-y:auto;padding:6px}
