@@ -10475,9 +10475,6 @@ body#phpbb{margin-top:0!important}
 .fsb-tip::before{content:"";position:absolute;left:-4px;top:50%;transform:translateY(-50%) rotate(45deg);width:8px;height:8px;background:var(--neutralDarker);border-radius:1px}
 .fsb-avatar:hover .fsb-tip,.fsb-btn:hover .fsb-tip{opacity:1;transform:translateY(-50%) scale(1)}
 
-/* BADGE RANG — tronqué si trop long */
-.fsb-rank{background:var(--co-gradient);color:white;font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:1px 6px;border-radius:6px;margin-bottom:10px;flex-shrink:0;max-width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
-
 /* SÉPARATEUR */
 .fsb-sep{width:22px;height:1px;background:var(--co-gradient);margin:8px 0;flex-shrink:0;opacity:.6}
 
@@ -10538,6 +10535,7 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 @keyframes fsb-slide{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
 .fsb-pop-qm:not(.is-open) .fsb-qm-link{animation:none;opacity:0}
 
-/* PSEUDO VERTICAL — tourné vers l'intérieur */
-.fsb-username{writing-mode:vertical-rl;text-orientation:mixed;font-family:var(--font-3);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--textColorAccent)!important;font-weight:600!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:120px;margin:4px 0;opacity:.8;transition:opacity .3s,color .3s}
+/* PSEUDO VERTICAL — tourné vers l'intérieur du forum */
+.fsb-username{writing-mode:vertical-lr;text-orientation:mixed;font-family:var(--font-3);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--textColorAccent)!important;font-weight:600!important;white-space:nowrap;max-height:none;margin:4px 0;opacity:.8;transition:opacity .3s,color .3s}
 .fsb-username:hover{opacity:1;color:var(--co-3)!important}
+
