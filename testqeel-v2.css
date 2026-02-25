@@ -1226,18 +1226,6 @@ div#tabs li:nth-child(5) {
 	float: left;
 }
 
-/* CORRECTION COULEUR LABELS - CLASSE SOCIALE & RELATIONSHIP STATUS */
-#field_id9 .field_label,
-#field_id14 .field_label {
-  color: inherit !important;
-}
-
-/* Alternative si la première ne fonctionne pas */
-.user_field#field_id9 .field_label,
-.user_field#field_id14 .field_label {
-  color: var(--co-2) !important;
-}
-
 /*** ------------------------------- ***/
 /*** AES POUR PAGE PROFIL -------------- ***/
 
