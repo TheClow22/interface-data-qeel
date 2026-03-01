@@ -6532,7 +6532,7 @@ html.js .category .forums .fs-panel.is-active{
   line-height: 1 !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  color: var(--contrast) !important;
+  color: #EBECF2 !important;
   text-shadow: 0 0 10px rgba(160,120,255,.20);
 }
 
