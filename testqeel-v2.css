@@ -10306,11 +10306,12 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 .fsb-username:hover{opacity:1;color:var(--co-3)!important}
 
 /* ====================================== */
-/* NOUVELLE PA CYBERPUNK V2 — OPTIMISÉE  */
+/* NOUVELLE PA CYBERPUNK V2 — FINAL      */
 /* ====================================== */
 
-/* Cacher l'ancienne navigation */
-.pa_links {
+/* Forcer la suppression de l'ancienne nav */
+.pa_links,
+.flex.pa_links {
   display: none !important;
 }
 
@@ -10345,7 +10346,6 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   100% { background-position: 200% 0%; }
 }
 
-/* Scanlines sur la frise */
 .pa-cyber-header::before {
   content: "";
   position: absolute;
@@ -10360,7 +10360,6 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   pointer-events: none;
 }
 
-/* Particules lumineuses */
 .pa-cyber-header::after {
   content: "";
   position: absolute;
@@ -10398,7 +10397,6 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   overflow: hidden;
 }
 
-/* Particules flottantes */
 .pa-cyber-grid-v2::before {
   content: "";
   position: absolute;
@@ -10416,7 +10414,6 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   z-index: 0;
 }
 
-/* Scanlines subtiles */
 .pa-cyber-grid-v2::after {
   content: "";
   position: absolute;
@@ -10475,9 +10472,6 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--pa-arch-icon);
-  background-size: cover;
-  background-position: center;
   background-image: 
     var(--pa-arch-icon),
     repeating-linear-gradient(
@@ -10487,6 +10481,8 @@ a.fsb-btn:hover{color:var(--co-3)!important}
       transparent 2px,
       transparent 4px
     );
+  background-size: cover, 100% 100%;
+  background-position: center, 0 0;
   z-index: 0;
 }
 
@@ -10570,4 +10566,368 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 .pa-langues-block bg3 {
   display: block;
   margin: -18px -18px 12px;
-  border-r
+  border-radius: var(--radius) var(--radius) 0 0;
+  text-align: center;
+}
+
+.langues-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.langue-tab {
+  flex: 1;
+  min-width: 80px;
+  padding: 6px 10px;
+  background: var(--neutral);
+  border: 1px solid var(--neutralDark);
+  border-radius: 8px;
+  font-family: var(--font-3);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--contrast);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.langue-tab.active {
+  background: var(--co-gradient);
+  color: white;
+  border-color: var(--co-1);
+  box-shadow: 
+    0 0 12px rgba(117, 207, 8, 0.4),
+    0 0 20px rgba(103, 0, 194, 0.3);
+}
+
+.langue-tab:not(.active):hover {
+  background: var(--neutralDarker);
+  border-color: var(--co-1);
+  animation: tabGlitch 0.4s ease;
+}
+
+@keyframes tabGlitch {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+}
+
+.langues-content {
+  position: relative;
+  min-height: 70px;
+}
+
+.langue-item {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.langue-item.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.langue-item t4 {
+  margin-bottom: 8px;
+}
+
+/* ===== MÉTÉO COMPACTE ===== */
+
+.pa-meteo-cyber-v2 {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--neutralDark);
+  border-radius: var(--radius);
+  padding: 12px;
+  border: 1px solid var(--neutral);
+  box-shadow: 
+    0 0 15px rgba(117, 207, 8, 0.1),
+    inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.meteo-icon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--co-gradient);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 15px rgba(117, 207, 8, 0.4),
+    0 0 25px rgba(103, 0, 194, 0.3);
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.meteo-icon .cp {
+  font-size: 26px;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.meteo-info {
+  flex: 1;
+}
+
+.meteo-info bg3 {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 9px;
+}
+
+.meteo-temp {
+  margin: 4px 0;
+}
+
+.meteo-temp bb1 {
+  font-size: var(--medium-size);
+  background: var(--co-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.meteo-info little-tx {
+  display: block;
+  line-height: 1.3;
+  font-size: 11px;
+}
+
+/* ====================================== */
+/* SHIP CARDS À DROITE                    */
+/* ====================================== */
+
+.pa-ship-cards-v2 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+.pa-ship-card {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.pa-ship-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(135deg, var(--co-1), var(--co-3), var(--co-1));
+  background-size: 200% 200%;
+  border-radius: var(--radius);
+  z-index: 0;
+  animation: gradientRotate 4s linear infinite;
+}
+
+@keyframes gradientRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.ship-card-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: var(--neutralDarker);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ship-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.pa-ship-card:hover .ship-card-img img {
+  animation: glitchEffect 0.3s ease;
+}
+
+@keyframes glitchEffect {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+  40% { transform: translate(2px, -2px); filter: hue-rotate(-90deg); }
+  60% { transform: translate(-1px, -1px); filter: hue-rotate(180deg); }
+  80% { transform: translate(1px, 1px); filter: hue-rotate(-180deg); }
+  100% { transform: translate(0); filter: hue-rotate(0deg); }
+}
+
+.ship-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  padding: 12px 10px 8px;
+  z-index: 2;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.pa-ship-card:hover .ship-card-overlay {
+  transform: translateY(0);
+}
+
+.ship-name {
+  display: block;
+  font-family: var(--font-3);
+  font-size: var(--normal-size);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  text-align: center;
+  text-shadow: 
+    0 0 10px var(--co-1),
+    0 0 20px var(--co-3);
+}
+
+.pa-ship-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 0 20px rgba(117, 207, 8, 0.6),
+    0 0 40px rgba(103, 0, 194, 0.4);
+}
+
+/* ====================================== */
+/* PLAYLIST SPOTIFY COMPACTE              */
+/* ====================================== */
+
+.pa-cyber-playlist-v2 {
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+  background: var(--neutralDark);
+  border-radius: var(--radius);
+  padding: 15px;
+  border: 2px solid transparent;
+  background-image: 
+    linear-gradient(var(--neutralDark), var(--neutralDark)),
+    var(--co-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 
+    0 0 20px rgba(117, 207, 8, 0.2),
+    0 0 30px rgba(103, 0, 194, 0.15),
+    inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.playlist-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-family: var(--font-3);
+  font-size: var(--medium-size);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--contrast);
+}
+
+.playlist-title .cp {
+  color: var(--co-1);
+  font-size: var(--large-size);
+  animation: musicNote 1.5s ease-in-out infinite;
+}
+
+.playlist-title .cp:first-child {
+  animation-delay: 0s;
+}
+
+.playlist-title .cp:last-child {
+  animation-delay: 0.75s;
+}
+
+@keyframes musicNote {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.pa-cyber-playlist-v2 iframe {
+  display: block;
+  border-radius: 12px;
+  filter: drop-shadow(0 0 10px rgba(117, 207, 8, 0.2));
+}
+
+/* ====================================== */
+/* EFFET GLITCH ALÉATOIRE                 */
+/* ====================================== */
+
+@keyframes randomGlitch {
+  0%, 100% { 
+    clip-path: inset(0);
+    transform: translate(0);
+  }
+  10% { 
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% { 
+    clip-path: inset(80% 0 0 0);
+    transform: translate(2px, -2px);
+  }
+  30% { 
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-1px, 1px);
+  }
+  40% { 
+    clip-path: inset(0);
+    transform: translate(0);
+  }
+}
+
+.glitch-active {
+  animation: randomGlitch 0.4s ease;
+}
+
+/* ====================================== */
+/* RESPONSIVE                             */
+/* ====================================== */
+
+@media screen and (max-width: 1200px) {
+  .pa-cyber-grid-v2 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .pa-cyber-welcome-v2,
+  .pa-cyber-center,
+  .pa-ship-cards-v2,
+  .pa-cyber-playlist-v2 {
+    grid-column: 1;
+  }
+  
+  .pa-ship-cards-v2 {
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .pa-ship-card {
+    width: calc(50% - 7.5px);
+    height: 200px;
+  }
+}
