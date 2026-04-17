@@ -10306,7 +10306,7 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 .fsb-username:hover{opacity:1;color:var(--co-3)!important}
 
 /* ====================================== */
-/* PA CYBERPUNK V3 — FINAL OPTIMISÉ      */
+/* PA CYBERPUNK V3 — FINAL ALIGNÉ        */
 /* ====================================== */
 
 .pa_links,
@@ -10378,14 +10378,14 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 }
 
 /* ====================================== */
-/* GRILLE V3 — COMPACT                    */
+/* GRILLE V3 — ALIGNÉE                    */
 /* ====================================== */
 
 .pa-cyber-grid-v3 {
   position: relative;
   display: grid;
-  grid-template-columns: 230px 1fr 400px;
-  grid-template-rows: auto;
+  grid-template-columns: 230px 1fr 336px;
+  grid-template-rows: 240px 120px;
   gap: 20px;
   padding: 25px;
   margin-bottom: 40px;
@@ -10440,7 +10440,7 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 }
 
 /* ====================================== */
-/* GIF CENTRAL (GAUCHE, REMONTÉ)          */
+/* GIF CENTRAL (ALIGNÉ EN HAUT)           */
 /* ====================================== */
 
 .pa-cyber-welcome-v3 {
@@ -10449,7 +10449,6 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 10px;
 }
 
 .pa-arch-cyber {
@@ -10545,10 +10544,10 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 
 .pa-cyber-center-v3 {
   grid-column: 2 / 3;
-  grid-row: 1 / 2;
+  grid-row: 1 / 3;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 /* ===== LANGUES ===== */
@@ -10561,6 +10560,7 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   box-shadow: 
     0 0 15px rgba(117, 207, 8, 0.1),
     inset 0 0 30px rgba(0, 0, 0, 0.2);
+  flex: 1;
 }
 
 .pa-langues-block bg3 {
@@ -10712,35 +10712,51 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 
 .pa-cyber-right-v3 {
   grid-column: 3 / 4;
-  grid-row: 1 / 2;
+  grid-row: 1 / 3;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
-/* ===== SHIP CARDS (CÔTE À CÔTE) ===== */
+/* ===== SHIP CARDS (RÉDUITES + RAPPROCHÉES) ===== */
 
 .pa-ship-cards-v3 {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: space-between;
 }
 
 .pa-ship-card {
   position: relative;
-  width: 180px;
+  width: 160px;
   height: 240px;
   border-radius: var(--radius);
-  overflow: hidden;
+  overflow: visible;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-/* Bordure PERMANENTE bicolore */
+/* CONTOUR DÉCALÉ (comme le header) */
+.pa-ship-card {
+  outline: 2px solid transparent;
+  outline-offset: 6px;
+  animation: shipOutline 3s ease-in-out infinite;
+}
+
+@keyframes shipOutline {
+  0%, 100% { 
+    outline-color: var(--co-1);
+  }
+  50% { 
+    outline-color: var(--co-3);
+  }
+}
+
+/* Bordure animée COLLÉE (interne) */
 .pa-ship-card::before {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   background: linear-gradient(135deg, var(--co-1), var(--co-3), var(--co-1));
   background-size: 200% 200%;
   border-radius: var(--radius);
@@ -10816,12 +10832,9 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 
 .pa-ship-card:hover {
   transform: translateY(-3px);
-  box-shadow: 
-    0 0 25px rgba(117, 207, 8, 0.7),
-    0 0 45px rgba(103, 0, 194, 0.5);
 }
 
-/* ===== PLAYLIST COMPACTE ===== */
+/* ===== PLAYLIST RÉDUITE ===== */
 
 .pa-cyber-playlist-v3 {
   background: var(--neutralDark);
@@ -10915,6 +10928,7 @@ a.fsb-btn:hover{color:var(--co-3)!important}
 @media screen and (max-width: 1200px) {
   .pa-cyber-grid-v3 {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: 20px;
   }
   
@@ -10922,6 +10936,7 @@ a.fsb-btn:hover{color:var(--co-3)!important}
   .pa-cyber-center-v3,
   .pa-cyber-right-v3 {
     grid-column: 1;
+    grid-row: auto;
   }
   
   .pa-ship-cards-v3 {
