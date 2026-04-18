@@ -9870,8 +9870,8 @@ vertical-align: middle;
 }
 
 /* ========================================
-   RÉPERTOIRE PERSONNAGES V3 - SOCIAL FEED CARDS
-   Design cyberpunk avec bordures néon et effet glitch
+   RÉPERTOIRE PERSONNAGES - PROPOSITION A
+   Image carrée + badges verticaux à droite
    ======================================== */
 
 /* ====== SYSTÈME D'ONGLETS ====== */
@@ -9881,10 +9881,9 @@ vertical-align: middle;
 }
 
 .char-tabs-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
   margin-bottom: 30px;
   padding: 0 10px;
 }
@@ -9893,14 +9892,15 @@ vertical-align: middle;
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 20px;
+  padding: 10px 16px;
   background: var(--neutral);
   border: 2px solid var(--neutralDark);
   border-radius: var(--radius);
   color: var(--textColor);
   font-family: var(--font-3);
-  font-size: var(--little-size);
+  font-size: var(--small-size);
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
@@ -9908,7 +9908,6 @@ vertical-align: middle;
   overflow: hidden;
 }
 
-/* Effet néon au survol */
 .char-tab-btn::before {
   content: "";
   position: absolute;
@@ -9929,7 +9928,6 @@ vertical-align: middle;
   box-shadow: 0 4px 12px rgba(117, 207, 8, 0.3);
 }
 
-/* Onglet actif */
 .char-tab-btn.active {
   background: var(--co-gradient);
   background-size: 200% 200%;
@@ -9943,7 +9941,6 @@ vertical-align: middle;
   display: none;
 }
 
-/* Icône Cappuccicon dans le bouton */
 .char-tab-btn span.cp {
   position: relative;
   z-index: 1;
@@ -9985,44 +9982,30 @@ vertical-align: middle;
   }
 }
 
-/* ====== GRILLE DE CARTES (FEED) ====== */
-.char-feed {
+/* ====== GRILLE DE CARTES ====== */
+.char-grid-a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 20px;
   margin-top: 20px;
 }
 
-/* ====== CARTE PERSONNAGE V3 ====== */
-.char-card-v3 {
+/* ====== CARTE PERSONNAGE (PROPOSITION A) ====== */
+.char-card-a {
   position: relative;
   display: flex;
-  gap: 14px;
+  flex-direction: column;
   background: var(--neutralDark);
   border-radius: 16px;
-  padding: 14px;
-  overflow: hidden;
+  padding: 16px;
+  overflow: visible;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--neutral);
-  min-height: 140px;
-}
-
-/* Bordure néon animée (cachée par défaut) */
-.char-card-v3::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  background: var(--co-gradient);
-  background-size: 200% 200%;
-  border-radius: 16px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 0;
-  animation: gradient 4s ease infinite;
+  height: 280px;
 }
 
 /* Effet glitch scan au hover */
-.char-card-v3::after {
+.char-card-a::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -10039,47 +10022,97 @@ vertical-align: middle;
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: 5;
+  border-radius: 16px;
 }
 
-/* Au hover : bordure néon + scan glitch */
-.char-card-v3:hover::before {
-  opacity: 1;
-}
-
-.char-card-v3:hover::after {
+.char-card-a:hover::after {
   opacity: 1;
   animation: glitch-scan 0.8s ease-in-out;
 }
 
-.char-card-v3:hover {
+.char-card-a:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(117, 207, 8, 0.2);
-  border-color: transparent;
+  border-color: var(--co-1);
 }
 
-/* Animation scan horizontal */
 @keyframes glitch-scan {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
-/* ====== AVATAR ====== */
-.char-card-avatar {
+/* ====== TOP : IMAGE + BADGE + INFOS ====== */
+.char-card-a > div:first-child {
+  display: flex;
+  gap: 14px;
   position: relative;
-  flex-shrink: 0;
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--neutral);
   z-index: 1;
 }
 
-.char-card-avatar img {
+/* ====== IMAGE AVEC BORDURE DOUBLE NÉON ====== */
+.char-card-img-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+}
+
+/* Bordure extérieure (co-1) */
+.char-card-img-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 14px;
+  border: 2px solid var(--co-1);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+/* Bordure intérieure (co-3) */
+.char-card-img-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 16px;
+  border: 2px solid var(--co-3);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.char-card-a:hover .char-card-img-wrapper::before {
+  opacity: 1;
+  animation: neon-pulse 1.5s ease-in-out infinite;
+}
+
+.char-card-a:hover .char-card-img-wrapper::after {
+  opacity: 0.9;
+  box-shadow: 0 0 15px var(--co-3);
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--co-1);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--co-1);
+  }
+}
+
+.char-card-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--neutral);
+  position: relative;
+  z-index: 2;
+}
+
+.char-card-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -10087,105 +10120,233 @@ vertical-align: middle;
   filter: brightness(0.95);
 }
 
-.char-card-v3:hover .char-card-avatar img {
+.char-card-a:hover .char-card-img img {
   transform: scale(1.08);
   filter: brightness(1.05);
 }
 
-/* ====== CORPS DE LA CARTE ====== */
-.char-card-body {
-  position: relative;
+/* ====== CONTENU (BADGE + INFOS) ====== */
+.char-card-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  z-index: 1;
-  min-width: 0; /* Important pour text-overflow */
+  gap: 10px;
+  min-width: 0;
 }
 
-/* ====== HEADER (NOM + SIGNE ASTRO) ====== */
-.char-card-header {
+/* ====== BADGE D'AFFILIATION ====== */
+.char-affiliation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: var(--small-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.aff-icon {
+  font-size: var(--medium-size);
+  flex-shrink: 0;
+}
+
+.aff-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.2;
+}
+
+.aff-label {
+  font-size: 8px;
+  opacity: 0.9;
+}
+
+.aff-name {
+  font-size: var(--small-size);
+  font-weight: 700;
+}
+
+/* Niveau 1 : Famille du Dragon (Chen) */
+.char-affiliation.dragon {
+  background: color-mix(in srgb, var(--co-1), transparent 85%);
+  border-color: var(--co-1);
+  color: var(--co-1);
+}
+
+.char-card-a:hover .char-affiliation.dragon {
+  background: color-mix(in srgb, var(--co-1), transparent 70%);
+  box-shadow: 0 0 10px rgba(117, 207, 8, 0.3);
+}
+
+/* Niveau 2 : Familles Fondatrices */
+.char-affiliation.fondatrice {
+  background: color-mix(in srgb, var(--co-2), transparent 85%);
+  border-color: var(--co-2);
+  color: var(--co-2);
+}
+
+.char-card-a:hover .char-affiliation.fondatrice {
+  background: color-mix(in srgb, var(--co-2), transparent 70%);
+  box-shadow: 0 0 10px rgba(130, 2, 173, 0.3);
+}
+
+/* Niveau 3 : Héritiers directs */
+.char-affiliation.heritier {
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--co-1), transparent 85%), 
+    color-mix(in srgb, var(--co-3), transparent 85%)
+  );
+  border: 1px solid;
+  border-image: var(--co-gradient) 1;
+  color: var(--co-1);
+}
+
+.char-card-a:hover .char-affiliation.heritier {
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--co-1), transparent 70%), 
+    color-mix(in srgb, var(--co-3), transparent 70%)
+  );
+  box-shadow: 0 0 12px rgba(117, 207, 8, 0.4);
+}
+
+/* Niveau 4 : Famille de Lieutenant */
+.char-affiliation.famille-lt {
+  background: color-mix(in srgb, var(--co-3), transparent 85%);
+  border-color: var(--co-3);
+  color: var(--co-3);
+}
+
+.char-card-a:hover .char-affiliation.famille-lt {
+  background: color-mix(in srgb, var(--co-3), transparent 70%);
+  box-shadow: 0 0 10px rgba(103, 0, 194, 0.3);
+}
+
+/* Niveau 5 : Affiliés */
+.char-affiliation.affilie {
+  background: var(--neutral);
+  border-color: var(--neutralDark);
+  color: var(--textColor);
+}
+
+.char-card-a:hover .char-affiliation.affilie {
+  background: var(--neutralDarker);
+  border-color: var(--co-1);
+}
+
+/* Niveau 6 : Habitant neutre */
+.char-affiliation.neutre {
+  background: var(--neutralDark);
+  border-color: var(--neutral);
+  color: var(--textColorAccent);
+}
+
+/* UC */
+.char-affiliation.uc {
+  background: color-mix(in srgb, var(--neutral), transparent 50%);
+  border-color: var(--neutralDark);
+  color: var(--textColor);
+  font-style: italic;
+}
+
+/* ====== INFORMATIONS DE BASE ====== */
+.char-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--little-size);
+  line-height: 1.4;
+  color: var(--textColor);
+}
+
+.info-icon {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.info-text i {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-left: 3px;
+}
+
+/* ====== FOOTER (NOM + TAGS) ====== */
+.char-card-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--neutral);
+}
+
+.char-card-name {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--co-1);
-}
-
-.char-name-v3 {
   margin: 0;
   font-family: var(--font-3);
-  font-size: var(--medium-size);
+  font-size: var(--normal-size);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.char-name-v3 c3 {
+.char-card-name c3 {
   background: var(--co-gradient);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient 6s ease infinite;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Signe astrologique */
 .char-astro {
   flex-shrink: 0;
-  font-size: var(--large-size);
+  font-size: var(--medium-size);
   transition: transform 0.3s ease;
 }
 
-.char-card-v3:hover .char-astro {
+.char-card-a:hover .char-astro {
   transform: scale(1.15) rotate(360deg);
 }
 
-/* ====== META (RACE, ÂGE, ORIENTATION) ====== */
-.char-card-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: var(--small-size);
-  line-height: 1.4;
-  color: var(--textColor);
-}
-
-.meta-item {
-  display: inline-flex;
-  align-items: center;
-}
-
-.meta-item i {
-  font-size: 9px;
-  opacity: 0.8;
-}
-
-.meta-sep {
-  color: var(--co-2);
-  font-weight: 600;
-  opacity: 0.5;
-}
-
-/* ====== TAGS ====== */
+/* ====== TAGS (AU HOVER) ====== */
 .char-card-tags {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 4px;
-  margin-top: 2px;
   line-height: 1.5;
+  max-height: 60px;
+  overflow-y: auto;
+}
+
+.char-card-a:hover .char-card-tags {
+  display: flex;
+  animation: fadeIn 0.3s ease;
 }
 
 .tag-item {
   display: inline-block;
-  padding: 2px 8px;
+  padding: 2px 6px;
   background: var(--neutral);
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 9px;
   color: var(--textColorAccent);
   text-transform: lowercase;
@@ -10194,29 +10355,24 @@ vertical-align: middle;
   border: 1px solid transparent;
 }
 
-.char-card-v3:hover .tag-item {
+.tag-item:hover {
   background: var(--neutralDarker);
   border-color: var(--co-1);
-}
-
-.tag-item:hover {
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(117, 207, 8, 0.2);
 }
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  .char-feed {
+  .char-grid-a {
     grid-template-columns: 1fr;
   }
   
   .char-tabs-nav {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
   
-  .char-tab-btn {
-    width: 100%;
-    justify-content: center;
+  .char-card-a {
+    height: auto;
   }
 }
 
