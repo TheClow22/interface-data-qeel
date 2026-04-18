@@ -10151,7 +10151,6 @@ vertical-align: middle;
 }
 
 .aff-icon {
-  font-family: var(--font-ic);
   font-size: var(--medium-size);
   flex-shrink: 0;
 }
@@ -10173,15 +10172,11 @@ vertical-align: middle;
   font-weight: 700;
 }
 
-/* Niveau 1 : Famille du Dragon (cp-crown) */
+/* Niveau 1 : Famille du Dragon */
 .char-affiliation.dragon {
   background: color-mix(in srgb, var(--co-1), transparent 85%);
   border-color: var(--co-1);
   color: var(--co-1);
-}
-
-.char-affiliation.dragon .aff-icon::before {
-  content: '\e9c4';
 }
 
 .char-card-a:hover .char-affiliation.dragon {
@@ -10189,15 +10184,11 @@ vertical-align: middle;
   box-shadow: 0 0 10px rgba(117, 207, 8, 0.3);
 }
 
-/* Niveau 2 : Familles Fondatrices (cp-sword) */
+/* Niveau 2 : Familles Fondatrices */
 .char-affiliation.fondatrice {
   background: color-mix(in srgb, var(--co-2), transparent 85%);
   border-color: var(--co-2);
   color: var(--co-2);
-}
-
-.char-affiliation.fondatrice .aff-icon::before {
-  content: '\ed2f';
 }
 
 .char-card-a:hover .char-affiliation.fondatrice {
@@ -10205,7 +10196,7 @@ vertical-align: middle;
   box-shadow: 0 0 10px rgba(130, 2, 173, 0.3);
 }
 
-/* Niveau 3 : Héritiers (cp-rose) */
+/* Niveau 3 : Héritiers */
 .char-affiliation.heritier {
   background: linear-gradient(135deg, 
     color-mix(in srgb, var(--co-1), transparent 85%), 
@@ -10216,10 +10207,6 @@ vertical-align: middle;
   color: var(--co-1);
 }
 
-.char-affiliation.heritier .aff-icon::before {
-  content: '\ed0b';
-}
-
 .char-card-a:hover .char-affiliation.heritier {
   background: linear-gradient(135deg, 
     color-mix(in srgb, var(--co-1), transparent 70%), 
@@ -10228,15 +10215,11 @@ vertical-align: middle;
   box-shadow: 0 0 12px rgba(117, 207, 8, 0.4);
 }
 
-/* Niveau 4 : Famille de Lieutenant (cp-home) */
+/* Niveau 4 : Famille de Lieutenant */
 .char-affiliation.famille-lt {
   background: color-mix(in srgb, var(--co-3), transparent 85%);
   border-color: var(--co-3);
   color: var(--co-3);
-}
-
-.char-affiliation.famille-lt .aff-icon::before {
-  content: '\ea44';
 }
 
 .char-card-a:hover .char-affiliation.famille-lt {
@@ -10244,15 +10227,11 @@ vertical-align: middle;
   box-shadow: 0 0 10px rgba(103, 0, 194, 0.3);
 }
 
-/* Niveau 5 : Affiliés (cp-thor) */
+/* Niveau 5 : Affiliés */
 .char-affiliation.affilie {
   background: var(--neutral);
   border-color: var(--neutralDark);
   color: var(--textColor);
-}
-
-.char-affiliation.affilie .aff-icon::before {
-  content: '\ed40';
 }
 
 .char-card-a:hover .char-affiliation.affilie {
@@ -10260,15 +10239,11 @@ vertical-align: middle;
   border-color: var(--co-1);
 }
 
-/* Niveau 6 : Habitant neutre (cp-factory) */
+/* Niveau 6 : Habitant neutre */
 .char-affiliation.neutre {
   background: var(--neutralDark);
   border-color: var(--neutral);
   color: var(--textColorAccent);
-}
-
-.char-affiliation.neutre .aff-icon::before {
-  content: '\e9fe';
 }
 
 /* UC */
@@ -10277,10 +10252,6 @@ vertical-align: middle;
   border-color: var(--neutralDark);
   color: var(--textColor);
   font-style: italic;
-}
-
-.char-affiliation.uc .aff-icon::before {
-  content: '\e978';
 }
 
 /* ====== INFORMATIONS DE BASE ====== */
@@ -10300,25 +10271,9 @@ vertical-align: middle;
 }
 
 .info-icon {
-  font-family: var(--font-ic);
   flex-shrink: 0;
   font-size: 13px;
   color: var(--co-1);
-}
-
-/* cp-cake pour l'âge */
-.info-icon.age::before {
-  content: '\e994';
-}
-
-/* cp-user pour la race */
-.info-icon.race::before {
-  content: '\ea8d';
-}
-
-/* cp-fire pour l'orientation */
-.info-icon.orientation::before {
-  content: '\ea02';
 }
 
 .info-text {
@@ -10398,22 +10353,10 @@ vertical-align: middle;
   font-family: var(--font-3);
 }
 
-.char-tags-toggle::before {
-  content: '\ea83';
-  font-family: var(--font-ic);
-  font-size: 12px;
-  color: var(--co-1);
-  transition: transform 0.3s ease;
-}
-
 .char-tags-toggle:hover {
   background: var(--neutralDarker);
   border-color: var(--co-1);
   transform: translateY(-1px);
-}
-
-.char-tags-toggle.active::before {
-  transform: rotate(180deg);
 }
 
 /* ====== TAGS EN DROPDOWN ====== */
