@@ -9870,10 +9870,11 @@ vertical-align: middle;
 }
 
 /* ========================================
-   RÉPERTOIRE PERSONNAGES - CARTES TAROT
+   RÉPERTOIRE PERSONNAGES V3 - SOCIAL FEED CARDS
+   Design cyberpunk avec bordures néon et effet glitch
    ======================================== */
 
-/* SYSTÈME D'ONGLETS */
+/* ====== SYSTÈME D'ONGLETS ====== */
 .char-tabs {
   width: 100%;
   margin-top: 20px;
@@ -9883,6 +9884,7 @@ vertical-align: middle;
   display: flex;
   gap: 10px;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 30px;
   padding: 0 10px;
 }
@@ -9892,57 +9894,56 @@ vertical-align: middle;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 12px 20px;
   background: var(--neutral);
   border: 2px solid var(--neutralDark);
   border-radius: var(--radius);
   color: var(--textColor);
   font-family: var(--font-3);
-  font-size: var(--normal-size);
+  font-size: var(--little-size);
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
+/* Effet néon au survol */
 .char-tab-btn::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
+  inset: 0;
   background: var(--co-gradient);
   opacity: 0;
-  transform: translate(-50%, -50%);
-  transition: all 0.5s ease;
+  transition: opacity 0.3s ease;
   z-index: 0;
 }
 
 .char-tab-btn:hover::before {
-  width: 300%;
-  height: 300%;
-  opacity: 0.2;
+  opacity: 0.15;
 }
 
 .char-tab-btn:hover {
   border-color: var(--co-1);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(224, 56, 174, 0.2);
+  box-shadow: 0 4px 12px rgba(117, 207, 8, 0.3);
 }
 
+/* Onglet actif */
 .char-tab-btn.active {
   background: var(--co-gradient);
+  background-size: 200% 200%;
+  animation: gradient 6s ease infinite;
   border-color: transparent;
   color: white;
-  box-shadow: 0 4px 12px rgba(224, 56, 174, 0.3);
+  box-shadow: 0 4px 15px rgba(117, 207, 8, 0.4);
 }
 
 .char-tab-btn.active::before {
   display: none;
 }
 
+/* Icône Cappuccicon dans le bouton */
 .char-tab-btn span.cp {
   position: relative;
   z-index: 1;
@@ -9951,267 +9952,279 @@ vertical-align: middle;
 }
 
 .char-tab-btn:hover span.cp {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.15) rotate(8deg);
 }
 
 .char-tab-btn.active span.cp {
-  animation: bounce 0.6s ease;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* CONTENU DES ONGLETS */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ====== CONTENU DES ONGLETS ====== */
 .char-tab-content {
   display: none;
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.4s ease;
 }
 
 .char-tab-content.active {
   display: block;
 }
 
-/* GRILLE DE CARTES */
-.char-grid {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== GRILLE DE CARTES (FEED) ====== */
+.char-feed {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  gap: 16px;
   margin-top: 20px;
 }
 
-/* CARTE PERSONNAGE - STYLE TAROT */
-.char-card {
+/* ====== CARTE PERSONNAGE V3 ====== */
+.char-card-v3 {
   position: relative;
-  width: 100%;
-  height: 580px;
-  perspective: 1500px;
-  min-width: 0;
-  }
-
-.char-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  gap: 14px;
   background: var(--neutralDark);
-  border-radius: var(--radius);
+  border-radius: 16px;
+  padding: 14px;
   overflow: hidden;
-  transition: all 0.5s ease;
-  border: 3px solid var(--neutral);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--neutral);
+  min-height: 140px;
 }
 
-/* BORDURE FIXE */
-.char-card-inner::before {
+/* Bordure néon animée (cachée par défaut) */
+.char-card-v3::before {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   background: var(--co-gradient);
-  border-radius: var(--radius);
+  background-size: 200% 200%;
+  border-radius: 16px;
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: opacity 0.4s ease;
   z-index: 0;
+  animation: gradient 4s ease infinite;
 }
 
-.char-card:hover .char-card-inner::before {
-  opacity: 0.5;
+/* Effet glitch scan au hover */
+.char-card-v3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(117, 207, 8, 0.1) 30%,
+    rgba(117, 207, 8, 0.3) 50%,
+    rgba(117, 207, 8, 0.1) 70%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
 }
 
-.char-card:hover .char-card-inner {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(224, 56, 174, 0.4);
+/* Au hover : bordure néon + scan glitch */
+.char-card-v3:hover::before {
+  opacity: 1;
+}
+
+.char-card-v3:hover::after {
+  opacity: 1;
+  animation: glitch-scan 0.8s ease-in-out;
+}
+
+.char-card-v3:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(117, 207, 8, 0.2);
   border-color: transparent;
 }
 
-/* IMAGE - FORMAT TAROT */
-.char-img {
+/* Animation scan horizontal */
+@keyframes glitch-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ====== AVATAR ====== */
+.char-card-avatar {
   position: relative;
-  width: 100%;
-  height: 350px;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--neutral);
   z-index: 1;
 }
 
-.char-img::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, var(--neutralDark));
-  pointer-events: none;
-  z-index: 2;
-}
-
-.char-img img {
+.char-card-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
   filter: brightness(0.95);
 }
 
-.char-card:hover .char-img img {
+.char-card-v3:hover .char-card-avatar img {
   transform: scale(1.08);
   filter: brightness(1.05);
 }
 
-/* PARTICULES SCINTILLANTES AU SURVOL */
-.char-card::after {
-  content: "✦";
-  position: absolute;
-  top: 20%;
-  right: 15%;
-  font-size: 20px;
-  color: var(--co-1);
-  opacity: 0;
-  animation: sparkle-float 3s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.char-card:hover::after {
-  opacity: 1;
-}
-
-@keyframes sparkle-float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  25% {
-    opacity: 0.8;
-  }
-  50% {
-    transform: translateY(-15px) rotate(180deg);
-    opacity: 1;
-  }
-  75% {
-    opacity: 0.8;
-  }
-}
-
-/* INFORMATIONS DU PERSONNAGE */
-.char-info {
+/* ====== CORPS DE LA CARTE ====== */
+.char-card-body {
   position: relative;
-  padding: 20px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   z-index: 1;
-  background: var(--neutralDark);
-  max-height: 230px;
-  overflow-y: auto;  
+  min-width: 0; /* Important pour text-overflow */
 }
 
-/* La scrollbar utilisera automatiquement le style global du forum (2px, thin) */
-
-/* NOM + SIGNE ASTRO */
-.char-name {
+/* ====== HEADER (NOM + SIGNE ASTRO) ====== */
+.char-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin: 0;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--co-1);
-  font-family: var(--font-3);
-  font-size: var(--large-size);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  line-height: 1.2;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--co-1);
 }
 
-.char-name c3 {
+.char-name-v3 {
+  margin: 0;
+  font-family: var(--font-3);
+  font-size: var(--medium-size);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.char-name-v3 c3 {
   background: var(--co-gradient);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient 6s ease infinite;
 }
 
-.char-name .cp {
+/* Signe astrologique */
+.char-astro {
   flex-shrink: 0;
-  font-size: var(--title-size);
+  font-size: var(--large-size);
   transition: transform 0.3s ease;
 }
 
-.char-card:hover .char-name .cp {
-  transform: scale(1.2) rotate(360deg);
+.char-card-v3:hover .char-astro {
+  transform: scale(1.15) rotate(360deg);
 }
 
-/* DÉTAILS (âge, race, orientation) */
-.char-details {
+/* ====== META (RACE, ÂGE, ORIENTATION) ====== */
+.char-card-meta {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.char-details p {
-  margin: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
   font-size: var(--small-size);
   line-height: 1.4;
   color: var(--textColor);
 }
 
-.char-details time {
-  display: inline-block;
-  min-width: 100px;
-}
-
-/* TAGS / MOTS-CLÉS - STYLE INLINE FLUIDE AVEC SÉPARATEURS MAGIQUES */
-.char-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 2px;
-  margin-top: 2px;
-  padding: 5px 6px;
-  background: var(--neutral);
-  border-left: 3px solid var(--co-3);
-  border-radius: 8px;
-  line-height: 1.6;
+.meta-item {
+  display: inline-flex;
   align-items: center;
 }
 
-.char-tag {
-  display: inline;
-  font-size: var(--small-size);
+.meta-item i {
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+.meta-sep {
+  color: var(--co-2);
+  font-weight: 600;
+  opacity: 0.5;
+}
+
+/* ====== TAGS ====== */
+.char-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+  line-height: 1.5;
+}
+
+.tag-item {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--neutral);
+  border-radius: 10px;
+  font-size: 9px;
   color: var(--textColorAccent);
   text-transform: lowercase;
   letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
-/* Séparateur Cappuccicon entre les tags */
-.char-tags .cp {
-  font-size: 10px;
-  color: var(--co-1);
-  animation: magic-sparkle 2.5s ease-in-out infinite;
-  margin: 0 4px;
+.char-card-v3:hover .tag-item {
+  background: var(--neutralDarker);
+  border-color: var(--co-1);
 }
 
-/* Animation magique du séparateur */
-@keyframes magic-sparkle {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.15) rotate(15deg);
-  }
+.tag-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(117, 207, 8, 0.2);
 }
 
-/* Effet au survol de la carte entière */
-.char-card:hover .char-tags .cp {
-  color: var(--co-3);
-  animation-duration: 1.5s;
-}
-
-/* RESPONSIVE */
+/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  .char-grid {
+  .char-feed {
     grid-template-columns: 1fr;
   }
   
-  .char-card {
-    height: auto;
+  .char-tabs-nav {
+    flex-direction: column;
   }
+  
+  .char-tab-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ====== ANIMATIONS GLOBALES ====== */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* NOUVELLE TOOLBAR */
