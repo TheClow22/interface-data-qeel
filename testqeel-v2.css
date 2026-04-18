@@ -9870,8 +9870,8 @@ vertical-align: middle;
 }
 
 /* ========================================
-   RÉPERTOIRE PERSONNAGES - PROPOSITION A V2
-   Image 160×200px + Badge à droite + Dropdown tags
+   RÉPERTOIRE PERSONNAGES - OVERLAY VERSION
+   Split Overlay Design avec image 280px
    ======================================== */
 
 /* ====== SYSTÈME D'ONGLETS ====== */
@@ -9961,6 +9961,12 @@ vertical-align: middle;
   50% { transform: scale(1.1); }
 }
 
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 /* ====== CONTENU DES ONGLETS ====== */
 .char-tab-content {
   display: none;
@@ -9982,30 +9988,369 @@ vertical-align: middle;
   }
 }
 
-/* ====== GRILLE DE CARTES ====== */
-.char-grid-a {
+/* ====== GRILLE DE CARTES OVERLAY ====== */
+.char-grid-overlay {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 16px;
   margin-top: 20px;
 }
 
-/* ====== CARTE PERSONNAGE (PROPOSITION A V2) ====== */
-.char-card-a {
+/* ====== CARTE PERSONNAGE - OVERLAY DESIGN ====== */
+.char-card-overlay-v2 {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--neutralDark);
+  width: 100%;
+  height: 280px;
   border-radius: 16px;
-  padding: 16px;
-  overflow: visible;
+  overflow: hidden;
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--neutral);
-  min-height: 320px;
 }
 
-/* Effet glitch scan au hover */
-.char-card-a::after {
+.char-card-overlay-v2:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(117, 207, 8, 0.2);
+  border-color: var(--co-1);
+}
+
+/* Image de fond plein écran */
+.char-img-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.85);
+  transition: all 0.5s ease;
+}
+
+.char-card-overlay-v2:hover .char-img-bg {
+  transform: scale(1.05);
+  filter: brightness(0.65);
+}
+
+/* Gradient overlay */
+.char-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.char-card-overlay-v2:hover .char-gradient {
+  opacity: 0.95;
+}
+
+/* Contenu par-dessus l'image */
+.char-content-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+/* ====== BADGE D'AFFILIATION ====== */
+.char-badge-overlay {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  font-family: var(--font-3);
+}
+
+.char-card-overlay-v2:hover .char-badge-overlay {
+  backdrop-filter: blur(12px);
+  transform: translateY(-2px);
+}
+
+.char-badge-overlay .cp {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.badge-text-overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.2;
+}
+
+.badge-label-overlay {
+  font-size: 7px;
+  opacity: 0.9;
+}
+
+.badge-name-overlay {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Variantes badges avec vraies couleurs */
+.char-badge-overlay.dragon {
+  background: rgba(117, 207, 8, 0.25);
+  color: #75CF08;
+  border-color: #75CF08;
+}
+
+.char-card-overlay-v2:hover .char-badge-overlay.dragon {
+  background: rgba(117, 207, 8, 0.35);
+  box-shadow: 0 0 10px rgba(117, 207, 8, 0.3);
+}
+
+.char-badge-overlay.fondatrice {
+  background: rgba(130, 2, 173, 0.25);
+  color: #8202AD;
+  border-color: #8202AD;
+}
+
+.char-card-overlay-v2:hover .char-badge-overlay.fondatrice {
+  background: rgba(130, 2, 173, 0.35);
+  box-shadow: 0 0 10px rgba(130, 2, 173, 0.3);
+}
+
+.char-badge-overlay.heritier {
+  background: linear-gradient(135deg, rgba(117, 207, 8, 0.25), rgba(103, 0, 194, 0.25));
+  color: #75CF08;
+  border-color: #75CF08;
+}
+
+.char-card-overlay-v2:hover .char-badge-overlay.heritier {
+  background: linear-gradient(135deg, rgba(117, 207, 8, 0.35), rgba(103, 0, 194, 0.35));
+  box-shadow: 0 0 12px rgba(117, 207, 8, 0.4);
+}
+
+.char-badge-overlay.famille-lt {
+  background: rgba(103, 0, 194, 0.25);
+  color: #6700C2;
+  border-color: #6700C2;
+}
+
+.char-card-overlay-v2:hover .char-badge-overlay.famille-lt {
+  background: rgba(103, 0, 194, 0.35);
+  box-shadow: 0 0 10px rgba(103, 0, 194, 0.3);
+}
+
+.char-badge-overlay.affilie {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.char-card-overlay-v2:hover .char-badge-overlay.affilie {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.char-badge-overlay.neutre {
+  background: rgba(136, 135, 128, 0.25);
+  color: #888780;
+  border-color: #888780;
+}
+
+.char-card-overlay-v2:hover .char-badge-overlay.neutre {
+  background: rgba(136, 135, 128, 0.35);
+}
+
+.char-badge-overlay.uc {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  font-style: italic;
+}
+
+/* ====== FOOTER (NOM + INFOS) ====== */
+.char-footer-overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Nom + Astro */
+.char-name-row-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.char-name-overlay {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-3);
+}
+
+.char-name-overlay c3 {
+  background: var(--co-gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient 6s ease infinite;
+}
+
+.char-astro-overlay {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.char-astro-overlay .cp {
+  font-size: 20px;
+}
+
+.char-card-overlay-v2:hover .char-astro-overlay {
+  transform: scale(1.15) rotate(360deg);
+}
+
+/* ====== INFOS DE BASE (APPARAISSENT AU HOVER) ====== */
+.char-infos-overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.char-card-overlay-v2:hover .char-infos-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 100px;
+}
+
+.info-row-overlay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-3);
+}
+
+.info-row-overlay .cp {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.info-text-overlay i {
+  font-size: 10px;
+  opacity: 0.7;
+  margin-left: 2px;
+}
+
+/* ====== BOUTON TOGGLE DÉTAILS ====== */
+.char-toggle-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  font-family: var(--font-3);
+}
+
+.char-toggle-overlay:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.char-toggle-overlay .cp {
+  font-size: 13px;
+}
+
+/* ====== TAGS EN DROPDOWN ====== */
+.char-tags-overlay {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  max-height: 120px;
+  overflow-y: auto;
+  animation: slideDownOverlay 0.3s ease;
+}
+
+.char-tags-overlay.active {
+  display: flex;
+}
+
+@keyframes slideDownOverlay {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tag-item-overlay {
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: lowercase;
+  letter-spacing: 0.3px;
+  border-left: 2px solid transparent;
+  transition: all 0.3s ease;
+  font-family: var(--font-3);
+}
+
+.tag-item-overlay::before {
+  content: '• ';
+  color: #75CF08;
+  margin-right: 4px;
+}
+
+.tag-item-overlay:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-left-color: #75CF08;
+  transform: translateX(3px);
+}
+
+/* ====== EFFET SCAN NÉON AU HOVER ====== */
+.char-card-overlay-v2::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -10021,401 +10366,23 @@ vertical-align: middle;
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
-  z-index: 5;
+  z-index: 10;
   border-radius: 16px;
 }
 
-.char-card-a:hover::after {
+.char-card-overlay-v2:hover::after {
   opacity: 1;
-  animation: glitch-scan 0.8s ease-in-out;
+  animation: glitchScan 0.8s ease-in-out;
 }
 
-.char-card-a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(117, 207, 8, 0.2);
-  border-color: var(--co-1);
-}
-
-@keyframes glitch-scan {
+@keyframes glitchScan {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
 
-/* ====== TOP : IMAGE + BADGE ====== */
-.char-card-a > div:first-child {
-  display: flex;
-  gap: 14px;
-  position: relative;
-  z-index: 1;
-}
-
-/* ====== IMAGE AVEC BORDURE DOUBLE NÉON ====== */
-.char-card-img-wrapper {
-  position: relative;
-  flex-shrink: 0;
-  width: 160px;
-  height: 200px;
-}
-
-/* Bordure extérieure (co-1) */
-.char-card-img-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border-radius: 14px;
-  border: 2px solid var(--co-1);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-/* Bordure intérieure (co-3) */
-.char-card-img-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border-radius: 16px;
-  border: 2px solid var(--co-3);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.6;
-  transition: opacity 0.3s ease, box-shadow 0.3s ease;
-}
-
-.char-card-a:hover .char-card-img-wrapper::before {
-  opacity: 1;
-  animation: neon-pulse 1.5s ease-in-out infinite;
-}
-
-.char-card-a:hover .char-card-img-wrapper::after {
-  opacity: 0.9;
-  box-shadow: 0 0 15px var(--co-3);
-}
-
-@keyframes neon-pulse {
-  0%, 100% {
-    box-shadow: 0 0 5px var(--co-1);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--co-1);
-  }
-}
-
-.char-card-img {
-  width: 160px;
-  height: 200px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--neutral);
-  position: relative;
-  z-index: 2;
-}
-
-.char-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.5s ease;
-  filter: brightness(0.95);
-}
-
-.char-card-a:hover .char-card-img img {
-  transform: scale(1.08);
-  filter: brightness(1.05);
-}
-
-/* ====== CONTENU À DROITE (BADGE + INFOS) ====== */
-.char-card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-
-/* ====== BADGE D'AFFILIATION ====== */
-.char-affiliation {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-size: var(--small-size);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.aff-icon {
-  font-size: var(--medium-size);
-  flex-shrink: 0;
-}
-
-.aff-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  line-height: 1.2;
-}
-
-.aff-label {
-  font-size: 8px;
-  opacity: 0.9;
-}
-
-.aff-name {
-  font-size: var(--small-size);
-  font-weight: 700;
-}
-
-/* Niveau 1 : Famille du Dragon */
-.char-affiliation.dragon {
-  background: color-mix(in srgb, var(--co-1), transparent 85%);
-  border-color: var(--co-1);
-  color: var(--co-1);
-}
-
-.char-card-a:hover .char-affiliation.dragon {
-  background: color-mix(in srgb, var(--co-1), transparent 70%);
-  box-shadow: 0 0 10px rgba(117, 207, 8, 0.3);
-}
-
-/* Niveau 2 : Familles Fondatrices */
-.char-affiliation.fondatrice {
-  background: color-mix(in srgb, var(--co-2), transparent 85%);
-  border-color: var(--co-2);
-  color: var(--co-2);
-}
-
-.char-card-a:hover .char-affiliation.fondatrice {
-  background: color-mix(in srgb, var(--co-2), transparent 70%);
-  box-shadow: 0 0 10px rgba(130, 2, 173, 0.3);
-}
-
-/* Niveau 3 : Héritiers */
-.char-affiliation.heritier {
-  background: linear-gradient(135deg, 
-    color-mix(in srgb, var(--co-1), transparent 85%), 
-    color-mix(in srgb, var(--co-3), transparent 85%)
-  );
-  border: 1px solid;
-  border-image: var(--co-gradient) 1;
-  color: var(--co-1);
-}
-
-.char-card-a:hover .char-affiliation.heritier {
-  background: linear-gradient(135deg, 
-    color-mix(in srgb, var(--co-1), transparent 70%), 
-    color-mix(in srgb, var(--co-3), transparent 70%)
-  );
-  box-shadow: 0 0 12px rgba(117, 207, 8, 0.4);
-}
-
-/* Niveau 4 : Famille de Lieutenant */
-.char-affiliation.famille-lt {
-  background: color-mix(in srgb, var(--co-3), transparent 85%);
-  border-color: var(--co-3);
-  color: var(--co-3);
-}
-
-.char-card-a:hover .char-affiliation.famille-lt {
-  background: color-mix(in srgb, var(--co-3), transparent 70%);
-  box-shadow: 0 0 10px rgba(103, 0, 194, 0.3);
-}
-
-/* Niveau 5 : Affiliés */
-.char-affiliation.affilie {
-  background: var(--neutral);
-  border-color: var(--neutralDark);
-  color: var(--textColor);
-}
-
-.char-card-a:hover .char-affiliation.affilie {
-  background: var(--neutralDarker);
-  border-color: var(--co-1);
-}
-
-/* Niveau 6 : Habitant neutre */
-.char-affiliation.neutre {
-  background: var(--neutralDark);
-  border-color: var(--neutral);
-  color: var(--textColorAccent);
-}
-
-/* UC */
-.char-affiliation.uc {
-  background: color-mix(in srgb, var(--neutral), transparent 50%);
-  border-color: var(--neutralDark);
-  color: var(--textColor);
-  font-style: italic;
-}
-
-/* ====== INFORMATIONS DE BASE ====== */
-.char-infos {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.info-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: var(--little-size);
-  line-height: 1.4;
-  color: var(--textColor);
-}
-
-.info-icon {
-  flex-shrink: 0;
-  font-size: 13px;
-  color: var(--co-1);
-}
-
-.info-text {
-  flex: 1;
-}
-
-.info-text i {
-  font-size: 9px;
-  opacity: 0.8;
-  margin-left: 3px;
-}
-
-/* ====== FOOTER (NOM + BOUTON TAGS) ====== */
-.char-card-footer {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid var(--neutral);
-}
-
-.char-card-name {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 0;
-  font-family: var(--font-3);
-  font-size: var(--normal-size);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-}
-
-.char-card-name c3 {
-  background: var(--co-gradient);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient 6s ease infinite;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.char-astro {
-  flex-shrink: 0;
-  font-size: var(--medium-size);
-  transition: transform 0.3s ease;
-}
-
-.char-card-a:hover .char-astro {
-  transform: scale(1.15) rotate(360deg);
-}
-
-/* ====== BOUTON TOGGLE TAGS ====== */
-.char-tags-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: var(--neutral);
-  border: 1px solid var(--neutralDark);
-  border-radius: 10px;
-  font-size: var(--small-size);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--textColor);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: var(--font-3);
-}
-
-.char-tags-toggle:hover {
-  background: var(--neutralDarker);
-  border-color: var(--co-1);
-  transform: translateY(-1px);
-}
-
-/* ====== TAGS EN DROPDOWN ====== */
-.char-card-tags {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  padding: 10px;
-  background: var(--neutral);
-  border-radius: 10px;
-  margin-top: 5px;
-  max-height: 150px;
-  overflow-y: auto;
-  animation: slideDown 0.3s ease;
-}
-
-.char-card-tags.active {
-  display: flex;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tag-item {
-  display: block;
-  padding: 4px 8px;
-  background: var(--neutralDarker);
-  border-radius: 6px;
-  font-size: var(--small-size);
-  color: var(--textColorAccent);
-  text-transform: lowercase;
-  letter-spacing: 0.3px;
-  transition: all 0.3s ease;
-  border-left: 2px solid transparent;
-}
-
-.tag-item::before {
-  content: '• ';
-  color: var(--co-1);
-  margin-right: 4px;
-}
-
-.tag-item:hover {
-  background: var(--neutralDark);
-  border-left-color: var(--co-1);
-  transform: translateX(3px);
-}
-
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  .char-grid-a {
+  .char-grid-overlay {
     grid-template-columns: 1fr;
   }
   
@@ -10423,31 +10390,9 @@ vertical-align: middle;
     grid-template-columns: 1fr;
   }
   
-  .char-card-a {
-    min-height: auto;
+  .char-card-overlay-v2 {
+    height: 320px;
   }
-  
-  .char-card-a > div:first-child {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .char-card-img-wrapper {
-    width: 180px;
-    height: 220px;
-  }
-  
-  .char-card-img {
-    width: 180px;
-    height: 220px;
-  }
-}
-
-/* ====== ANIMATIONS GLOBALES ====== */
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* NOUVELLE TOOLBAR */
