@@ -9871,7 +9871,7 @@ vertical-align: middle;
 
 /* ========================================
    RÉPERTOIRE PERSONNAGES - OVERLAY VERSION
-   Split Overlay Design avec image 280px
+   Split Overlay Design avec image 340px (CORRIGÉ)
    ======================================== */
 
 /* ====== SYSTÈME D'ONGLETS ====== */
@@ -10000,7 +10000,7 @@ vertical-align: middle;
 .char-card-overlay-v2 {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 340px; /* AUGMENTÉ de 280px à 340px */
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
@@ -10022,30 +10022,35 @@ vertical-align: middle;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: brightness(0.85);
+  filter: brightness(1); /* RETIRÉ le filtre sombre */
   transition: all 0.5s ease;
 }
 
 .char-card-overlay-v2:hover .char-img-bg {
   transform: scale(1.05);
-  filter: brightness(0.65);
+  filter: brightness(0.9); /* LÉGER assombrissement au hover seulement */
 }
 
-/* Gradient overlay */
+/* Gradient overlay BEAUCOUP PLUS LÉGER */
 .char-gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
-    rgba(0, 0, 0, 0.9) 100%
+    rgba(0, 0, 0, 0) 0%,        /* TRANSPARENT en haut */
+    rgba(0, 0, 0, 0.15) 40%,    /* TRÈS LÉGER au milieu */
+    rgba(0, 0, 0, 0.5) 100%     /* MODÉRÉ en bas pour lisibilité du texte */
   );
   transition: opacity 0.3s ease;
 }
 
 .char-card-overlay-v2:hover .char-gradient {
-  opacity: 0.95;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
 }
 
 /* Contenu par-dessus l'image */
@@ -10127,10 +10132,28 @@ vertical-align: middle;
   box-shadow: 0 0 10px rgba(130, 2, 173, 0.3);
 }
 
+/* BADGE HÉRITIER AVEC GRADIENT SUR ICÔNE + TEXTE */
 .char-badge-overlay.heritier {
   background: linear-gradient(135deg, rgba(117, 207, 8, 0.25), rgba(103, 0, 194, 0.25));
-  color: #75CF08;
-  border-color: #75CF08;
+  border: 1px solid;
+  border-image: linear-gradient(135deg, #75CF08, #6700C2) 1;
+}
+
+/* Icône rose en gradient */
+.char-badge-overlay.heritier .cp-rose {
+  background: linear-gradient(135deg, #75CF08, #6700C2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Texte du badge en gradient */
+.char-badge-overlay.heritier .badge-label-overlay,
+.char-badge-overlay.heritier .badge-name-overlay {
+  background: linear-gradient(135deg, #75CF08, #6700C2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .char-card-overlay-v2:hover .char-badge-overlay.heritier {
@@ -10195,7 +10218,7 @@ vertical-align: middle;
   font-size: 18px;
   font-weight: 500;
   color: white;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8); /* Ombre plus forte pour lisibilité */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -10209,6 +10232,7 @@ vertical-align: middle;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient 6s ease infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)); /* Ombre pour visibilité */
 }
 
 .char-astro-overlay {
@@ -10218,6 +10242,7 @@ vertical-align: middle;
 
 .char-astro-overlay .cp {
   font-size: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)); /* Ombre pour visibilité */
 }
 
 .char-card-overlay-v2:hover .char-astro-overlay {
@@ -10247,18 +10272,20 @@ vertical-align: middle;
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   font-family: var(--font-3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Ombre pour lisibilité */
 }
 
 .info-row-overlay .cp {
   font-size: 13px;
   flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8)); /* Ombre pour visibilité */
 }
 
 .info-text-overlay i {
   font-size: 10px;
-  opacity: 0.7;
+  opacity: 0.8;
   margin-left: 2px;
 }
 
@@ -10269,8 +10296,8 @@ vertical-align: middle;
   justify-content: center;
   gap: 6px;
   padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.4); /* Fond plus visible */
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   font-size: 11px;
   font-weight: 600;
@@ -10285,8 +10312,8 @@ vertical-align: middle;
 }
 
 .char-toggle-overlay:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-1px);
 }
 
@@ -10301,10 +10328,10 @@ vertical-align: middle;
   gap: 4px;
   margin-top: 8px;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   border-radius: 10px;
   backdrop-filter: blur(12px);
-  max-height: 120px;
+  max-height: 150px; /* AUGMENTÉ pour tenir dans la nouvelle hauteur */
   overflow-y: auto;
   animation: slideDownOverlay 0.3s ease;
 }
@@ -10329,7 +10356,7 @@ vertical-align: middle;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   text-transform: lowercase;
   letter-spacing: 0.3px;
   border-left: 2px solid transparent;
@@ -10391,7 +10418,7 @@ vertical-align: middle;
   }
   
   .char-card-overlay-v2 {
-    height: 320px;
+    height: 380px; /* Hauteur mobile aussi augmentée */
   }
 }
 
