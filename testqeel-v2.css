@@ -9870,8 +9870,8 @@ vertical-align: middle;
 }
 
 /* ========================================
-   RÉPERTOIRE PERSONNAGES - PROPOSITION A
-   Image carrée + badges verticaux à droite
+   RÉPERTOIRE PERSONNAGES - PROPOSITION A V2
+   Image 160×200px + Badge à droite + Dropdown tags
    ======================================== */
 
 /* ====== SYSTÈME D'ONGLETS ====== */
@@ -9990,7 +9990,7 @@ vertical-align: middle;
   margin-top: 20px;
 }
 
-/* ====== CARTE PERSONNAGE (PROPOSITION A) ====== */
+/* ====== CARTE PERSONNAGE (PROPOSITION A V2) ====== */
 .char-card-a {
   position: relative;
   display: flex;
@@ -10001,7 +10001,7 @@ vertical-align: middle;
   overflow: visible;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--neutral);
-  height: 280px;
+  min-height: 320px;
 }
 
 /* Effet glitch scan au hover */
@@ -10041,7 +10041,7 @@ vertical-align: middle;
   100% { transform: translateX(100%); }
 }
 
-/* ====== TOP : IMAGE + BADGE + INFOS ====== */
+/* ====== TOP : IMAGE + BADGE ====== */
 .char-card-a > div:first-child {
   display: flex;
   gap: 14px;
@@ -10053,8 +10053,8 @@ vertical-align: middle;
 .char-card-img-wrapper {
   position: relative;
   flex-shrink: 0;
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 200px;
 }
 
 /* Bordure extérieure (co-1) */
@@ -10103,8 +10103,8 @@ vertical-align: middle;
 }
 
 .char-card-img {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 200px;
   border-radius: 12px;
   overflow: hidden;
   background: var(--neutral);
@@ -10116,6 +10116,7 @@ vertical-align: middle;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.5s ease;
   filter: brightness(0.95);
 }
@@ -10125,7 +10126,7 @@ vertical-align: middle;
   filter: brightness(1.05);
 }
 
-/* ====== CONTENU (BADGE + INFOS) ====== */
+/* ====== CONTENU À DROITE (BADGE + INFOS) ====== */
 .char-card-content {
   flex: 1;
   display: flex;
@@ -10150,6 +10151,7 @@ vertical-align: middle;
 }
 
 .aff-icon {
+  font-family: var(--font-ic);
   font-size: var(--medium-size);
   flex-shrink: 0;
 }
@@ -10171,11 +10173,15 @@ vertical-align: middle;
   font-weight: 700;
 }
 
-/* Niveau 1 : Famille du Dragon (Chen) */
+/* Niveau 1 : Famille du Dragon (cp-crown) */
 .char-affiliation.dragon {
   background: color-mix(in srgb, var(--co-1), transparent 85%);
   border-color: var(--co-1);
   color: var(--co-1);
+}
+
+.char-affiliation.dragon .aff-icon::before {
+  content: '\e9c4';
 }
 
 .char-card-a:hover .char-affiliation.dragon {
@@ -10183,11 +10189,15 @@ vertical-align: middle;
   box-shadow: 0 0 10px rgba(117, 207, 8, 0.3);
 }
 
-/* Niveau 2 : Familles Fondatrices */
+/* Niveau 2 : Familles Fondatrices (cp-sword) */
 .char-affiliation.fondatrice {
   background: color-mix(in srgb, var(--co-2), transparent 85%);
   border-color: var(--co-2);
   color: var(--co-2);
+}
+
+.char-affiliation.fondatrice .aff-icon::before {
+  content: '\ed2f';
 }
 
 .char-card-a:hover .char-affiliation.fondatrice {
@@ -10195,7 +10205,7 @@ vertical-align: middle;
   box-shadow: 0 0 10px rgba(130, 2, 173, 0.3);
 }
 
-/* Niveau 3 : Héritiers directs */
+/* Niveau 3 : Héritiers (cp-rose) */
 .char-affiliation.heritier {
   background: linear-gradient(135deg, 
     color-mix(in srgb, var(--co-1), transparent 85%), 
@@ -10206,6 +10216,10 @@ vertical-align: middle;
   color: var(--co-1);
 }
 
+.char-affiliation.heritier .aff-icon::before {
+  content: '\ed0b';
+}
+
 .char-card-a:hover .char-affiliation.heritier {
   background: linear-gradient(135deg, 
     color-mix(in srgb, var(--co-1), transparent 70%), 
@@ -10214,11 +10228,15 @@ vertical-align: middle;
   box-shadow: 0 0 12px rgba(117, 207, 8, 0.4);
 }
 
-/* Niveau 4 : Famille de Lieutenant */
+/* Niveau 4 : Famille de Lieutenant (cp-home) */
 .char-affiliation.famille-lt {
   background: color-mix(in srgb, var(--co-3), transparent 85%);
   border-color: var(--co-3);
   color: var(--co-3);
+}
+
+.char-affiliation.famille-lt .aff-icon::before {
+  content: '\ea44';
 }
 
 .char-card-a:hover .char-affiliation.famille-lt {
@@ -10226,11 +10244,15 @@ vertical-align: middle;
   box-shadow: 0 0 10px rgba(103, 0, 194, 0.3);
 }
 
-/* Niveau 5 : Affiliés */
+/* Niveau 5 : Affiliés (cp-thor) */
 .char-affiliation.affilie {
   background: var(--neutral);
   border-color: var(--neutralDark);
   color: var(--textColor);
+}
+
+.char-affiliation.affilie .aff-icon::before {
+  content: '\ed40';
 }
 
 .char-card-a:hover .char-affiliation.affilie {
@@ -10238,11 +10260,15 @@ vertical-align: middle;
   border-color: var(--co-1);
 }
 
-/* Niveau 6 : Habitant neutre */
+/* Niveau 6 : Habitant neutre (cp-factory) */
 .char-affiliation.neutre {
   background: var(--neutralDark);
   border-color: var(--neutral);
   color: var(--textColorAccent);
+}
+
+.char-affiliation.neutre .aff-icon::before {
+  content: '\e9fe';
 }
 
 /* UC */
@@ -10253,11 +10279,15 @@ vertical-align: middle;
   font-style: italic;
 }
 
+.char-affiliation.uc .aff-icon::before {
+  content: '\e978';
+}
+
 /* ====== INFORMATIONS DE BASE ====== */
 .char-infos {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 
 .info-row {
@@ -10270,23 +10300,44 @@ vertical-align: middle;
 }
 
 .info-icon {
+  font-family: var(--font-ic);
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: 13px;
+  color: var(--co-1);
+}
+
+/* cp-cake pour l'âge */
+.info-icon.age::before {
+  content: '\e994';
+}
+
+/* cp-user pour la race */
+.info-icon.race::before {
+  content: '\ea8d';
+}
+
+/* cp-fire pour l'orientation */
+.info-icon.orientation::before {
+  content: '\ea02';
+}
+
+.info-text {
+  flex: 1;
 }
 
 .info-text i {
-  font-size: 10px;
+  font-size: 9px;
   opacity: 0.8;
   margin-left: 3px;
 }
 
-/* ====== FOOTER (NOM + TAGS) ====== */
+/* ====== FOOTER (NOM + BOUTON TAGS) ====== */
 .char-card-footer {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin-top: auto;
   padding-top: 12px;
   border-top: 1px solid var(--neutral);
@@ -10327,38 +10378,96 @@ vertical-align: middle;
   transform: scale(1.15) rotate(360deg);
 }
 
-/* ====== TAGS (AU HOVER) ====== */
-.char-card-tags {
-  display: none;
-  flex-wrap: wrap;
-  gap: 4px;
-  line-height: 1.5;
-  max-height: 60px;
-  overflow-y: auto;
+/* ====== BOUTON TOGGLE TAGS ====== */
+.char-tags-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--neutral);
+  border: 1px solid var(--neutralDark);
+  border-radius: 10px;
+  font-size: var(--small-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--textColor);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-3);
 }
 
-.char-card-a:hover .char-card-tags {
+.char-tags-toggle::before {
+  content: '\ea83';
+  font-family: var(--font-ic);
+  font-size: 12px;
+  color: var(--co-1);
+  transition: transform 0.3s ease;
+}
+
+.char-tags-toggle:hover {
+  background: var(--neutralDarker);
+  border-color: var(--co-1);
+  transform: translateY(-1px);
+}
+
+.char-tags-toggle.active::before {
+  transform: rotate(180deg);
+}
+
+/* ====== TAGS EN DROPDOWN ====== */
+.char-card-tags {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  background: var(--neutral);
+  border-radius: 10px;
+  margin-top: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  animation: slideDown 0.3s ease;
+}
+
+.char-card-tags.active {
   display: flex;
-  animation: fadeIn 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .tag-item {
-  display: inline-block;
-  padding: 2px 6px;
-  background: var(--neutral);
-  border-radius: 8px;
-  font-size: 9px;
+  display: block;
+  padding: 4px 8px;
+  background: var(--neutralDarker);
+  border-radius: 6px;
+  font-size: var(--small-size);
   color: var(--textColorAccent);
   text-transform: lowercase;
   letter-spacing: 0.3px;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+}
+
+.tag-item::before {
+  content: '• ';
+  color: var(--co-1);
+  margin-right: 4px;
 }
 
 .tag-item:hover {
-  background: var(--neutralDarker);
-  border-color: var(--co-1);
-  transform: translateY(-1px);
+  background: var(--neutralDark);
+  border-left-color: var(--co-1);
+  transform: translateX(3px);
 }
 
 /* ====== RESPONSIVE ====== */
@@ -10372,7 +10481,22 @@ vertical-align: middle;
   }
   
   .char-card-a {
-    height: auto;
+    min-height: auto;
+  }
+  
+  .char-card-a > div:first-child {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .char-card-img-wrapper {
+    width: 180px;
+    height: 220px;
+  }
+  
+  .char-card-img {
+    width: 180px;
+    height: 220px;
   }
 }
 
